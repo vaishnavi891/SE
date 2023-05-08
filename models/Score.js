@@ -3,7 +3,7 @@ const sequelize = require("../config/connection");
 
 class Score extends Model {}
 
-Day.init(
+Score.init(
   {
     id: {
       type: DataTypes.INTEGER,
@@ -44,7 +44,7 @@ Day.init(
     timestamps: false,
     freezeTableName: true,
     underscored: true,
-    modelName: "day",
+    modelName: "score",
   }
 );
 
