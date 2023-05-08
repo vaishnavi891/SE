@@ -17,4 +17,4 @@ Score.belongsTo(Day, {
   foreignKey: "day_id",
 });
 
-module.exports = { User };
+module.exports = { User, Calendar, Day, Score };
