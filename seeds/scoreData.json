@@ -3,18 +3,21 @@
       "q1_value": 3,
       "q2_value": 4,
       "q3_value": 2,
+      "q4_value": 3,
       "day_id": 1
     },
     {
       "q1_value": 4,
       "q2_value": 3,
       "q3_value": 1,
+      "q4_value": 1,
       "day_id":2
     },
     {
       "q1_value": 1,
       "q2_value": 2,
       "q3_value": 4,
+      "q4_value": 4,
       "day_id":3
     }
   ]
