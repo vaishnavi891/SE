@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mental Health Tracker</title>
+    <link rel="stylesheet" href="../style.css" />
+</head>
+<body>
+    <nav class"nav">
+        
+                    <a class="link" href="/">Home</a>
+                    <a class="link" href="/resources">Resources</a>
+                    <a class="link" href="/about">About</a>
+                    <a class="link" href="/login">Login</a>
+                     {{#if loggedIn}}
+                     <a class="link" href="/dashboard">Dashboard</a>
+                     <a class="link" href="/logout">Log Out</a>
+                     {{/if}}
+                     <h1 class="app-title">Mental Health Tracker</h1>
+    </nav>
+     <main>
+      {{{ body }}}
+    </main>
+     <!-- Render script for logged in users only -->
+  {{#if loggedIn}}
+  <script src="/js/logout.js"></script>
+  {{/if}}
+</body>
+</html>
