@@ -2,8 +2,14 @@
   font-size: x-large;
   font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
+.aboutinfo,.purpose{
+display: flex;
+flex-wrap: wrap;
+justify-content: center;
+}
 
 .chaosimg, .growthimg{
+  display: inline;
   height: 600px;
   width: 600px;
 }
