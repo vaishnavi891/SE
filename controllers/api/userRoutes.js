@@ -19,7 +19,7 @@ router.post('/', async (req, res) => {
 
 router.post('/login', async (req, res) => {
   try {
-    const userData = await User.findAll({ where: { name: req.body.email } });
+    const userData = await User.findOne({ where: { email: req.body.email } });
 
     if (!userData) {
       res
@@ -28,17 +28,17 @@ router.post('/login', async (req, res) => {
       return;
     }
 
-    const validPassword = await userData[0].checkPassword(req.body.password);
+    const validPassword = await userData.checkPassword(req.body.password);
 
     if (!validPassword) {
       res
         .status(400)
-        .json({ message: 'Incorrect username or password, please try again' });
+        .json({ message: 'Incorrect email or password, please try again' });
       return;
     }
     req.session.save(() => {
       
-      req.session.user_id = userData[0].id;
+      req.session.user_id = userData.id;
       req.session.logged_in = true;
       res.json({ user: userData, message: 'You are now logged in!', user_id : req.session.user_id });
     });
