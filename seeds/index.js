@@ -1,5 +1,4 @@
 const sequelize = require("../config/connection");
-const User = require('../models/User')
 const userData = require("./userData.json");
 const calendarData = require("./calendarData.json");
 const dayData = require("./dayData.json");
@@ -18,7 +17,6 @@ const seedDatabase = async () => {
   await Day.bulkCreate(dayData);
   await Score.bulkCreate(scoreData);
   process.exit(0);
-
 };
 
 seedDatabase();
