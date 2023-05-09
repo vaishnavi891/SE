@@ -1,0 +1,29 @@
+calendar {
+    --cal-color-primary: #EC407A;
+    --cal-font-family-header: 'Open Sans', sans-serif;
+    --cal-font-family-weekdays: 'Open Sans', sans-serif;
+    --cal-font-family-body: 'Open Sans', sans-serif;
+    --cal-drop-shadow: 0 7px 30px -10px rgba(150, 170, 180, 0.5);
+    --cal-border: none;
+    --cal-border-radius: 0.5rem;
+    --cal-header-color: white;
+    --cal-header-background-color: rgba(0, 0, 0, 0.3);
+    }
+    
+    html, body, main {
+        height: 100%;
+      }
+    
+      .section {
+        min-height: 100vh;
+      }
+      
+      .login-box {
+        border: 1px solid #dbdbdb;
+        border-radius: 4px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        max-width: 500px;
+        margin: 0 auto;
+        background-color: #c5e6be;
+      }
