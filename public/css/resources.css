@@ -1,0 +1,22 @@
+.resourcespg{
+   font-size: x-large;
+   font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+ }
+ .samhsa, .suicide, .neda{
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: center;
+ }
+ .samhhsa-aboutinfo, .suicide-aboutinfo, .neda-aboutinfo{
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+ }
+
+ 
+ blockquote{
+   display: flex;
+   justify-content: center;
+   font-size: x-large;
+   font-weight: bold;
+ }
