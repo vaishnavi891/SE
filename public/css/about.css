@@ -3,9 +3,9 @@
   font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 .purpose{
-display: flex;
-flex-wrap: wrap;
-justify-content: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 .aboutinfo{
   display: flex;
@@ -22,4 +22,21 @@ justify-content: center;
 blockquote{
   display: flex;
   justify-content: center;
+}
+
+.questions{
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+  font-size: 50px;
+}
+
+#question1, #question2, #question3, #question4{
+  margin-left: 20px;
+  font-size: 50px;
+}
+.submit{
+  display: flex;
+  justify-content: center;
+  margin-top:50px;
 }
