@@ -1,9 +1,9 @@
 const { Model, DataTypes } = require("sequelize");
 const sequelize = require("../config/connection");
 
-class Day extends Model {}
+class Score extends Model {}
 
-Day.init(
+Score.init(
   {
     id: {
       type: DataTypes.INTEGER,
@@ -31,21 +31,14 @@ Day.init(
       allowNull: false,
       isUnique: false,
     },
-    day_id: {
-      type: DataTypes.INTEGER,
-      references: {
-        model: "day",
-        key: "id",
-      },
-    },
   },
   {
     sequelize,
     timestamps: false,
     freezeTableName: true,
     underscored: true,
-    modelName: "day",
+    modelName: "score",
   }
 );
 
-module.exports = Day;
+module.exports = Score;
