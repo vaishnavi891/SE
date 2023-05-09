@@ -1,0 +1,23 @@
+<div class="title is-1">
+  <h1 class="journal">My Journal</h1>
+</div>
+{{#each journalEntries}}
+<div class="box journal-entry">
+  <h2 class="title">{{title}}</h2>
+  <p class="subtitle">{{date}}</p>
+  <p class="entry">{{text}}</p>
+</div>
+{{/each}}
+<div class="textin">
+  <form action="/submit" method="post">
+    <label class="title" for="title">Title:</label>
+    <input class="input titlein is-primary is-large" type="text" id="title" name="title">
+    <br><br>
+    <label class="text" for="text">Text:</label>
+    <textarea class="textarea is-primary is-large" id="text" name="text"></textarea>
+</div>
+<br><br>
+<div class="button2">
+  <input class="button is-success is-light is-medium" type="submit" value="Submit">
+</div>
+</form>
