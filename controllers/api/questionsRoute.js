@@ -1,18 +1,22 @@
-const fs = require('fs');
+const router = require('express').Router();
+const { getQuestions } = require('./questions');
 
-function getQuestions() {
-  // Read the questions from the questions.json file
-  const questions = JSON.parse(fs.readFileSync('./questions.json', 'utf8'));
+router.get('/checkin', (req, res) => {
+  const questions = getQuestions();
+  res.render('checkin', { questions });
+});
 
-  // Map over the questions and add a `rating` property set to 0
-  return questions.map(question => {
-    return {
-      ...question,
-      rating: 0
-    };
-  });
-}
+router.post('/checkin', (req, res) => {
+  const answers = req.body;
 
-module.exports = {
-  getQuestions
-};
+  // Write the answers to a JSON file
+  const dataFilePath = path.join(__dirname, 'scoreData.json');
+  const data = JSON.parse(fs.readFileSync(dataFilePath, 'utf8'));
+  data.push(answers);
+  fs.writeFileSync(dataFilePath, JSON.stringify(data));
+
+  res.send('Thanks for your submission!');
+});
+
+
+module.exports = router;
