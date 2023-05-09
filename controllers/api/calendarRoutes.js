@@ -21,30 +21,58 @@ router.post('/', async (req, res) => {
     try {
         const calendarData = await Calendar.create(req.body);
 
-        req.session.save(() => {
-            req.session.calendar_id = calendarData.id;
-            req.session.logged_in = true;
+        //If successful
+        if(!calendarData){
+            res.status(404).json({error: 404, message : "Could not create Calendar" });
+            return;
+        }
 
-        });
         res.status(200).json(calendarData);
     } catch (err) {
         res.status(400).json(err);
     }
 });
 
-
-router.put('/', async (req, res) => {
+//Update Route 
+router.put('/:id', async (req, res) => {
     try {
+        const calendarData = await Calendar.update({
+            ...req.body
+        },
+        {
+            where : {
+                id : req.params.id
+            }
+        })
+        //If successfuly updated
+        if(!calendarData[0]){
+            res.status(404).json({error: 404, message : "Could not update calendar" });
+            return;
+        }
 
+        res.status(200).json(calendarData);
     } catch (error) {
         res.status(400).json(err);
     }
 
 })
 
-router.delete('/', async (req, res) => {
-    try {
 
+router.delete('/:id', async (req, res) => {
+    try {
+        const calendarData = Calendar.destroy({
+            where : {
+                id : req.params.id
+            }
+        })
+
+        //If successfuly deleted 
+        if(!calendarData){
+            res.status(404).json({error: 404, message : "Could not delete calendar" });
+            return;
+        }
+
+        res.status(200).json(calendarData);
     } catch (error) {
         res.status(400).json(err);
     }
