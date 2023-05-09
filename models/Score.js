@@ -31,13 +31,6 @@ Score.init(
       allowNull: false,
       isUnique: false,
     },
-    day_id: {
-      type: DataTypes.INTEGER,
-      references: {
-        model: "day",
-        key: "id",
-      },
-    },
   },
   {
     sequelize,
