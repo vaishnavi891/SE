@@ -1,0 +1,16 @@
+<form action="/checkin" method="POST">
+  {{#each questions}}
+    <label for="{{this.id}}">{{this.question}}</label>
+    <div class="rating">
+      <input type="radio" name="{{this.id}}" value="1" id="{{this.id}}-1">
+      <label for="{{this.id}}-1">1</label>
+      <input type="radio" name="{{this.id}}" value="2" id="{{this.id}}-2">
+      <label for="{{this.id}}-2">2</label>
+      <input type="radio" name="{{this.id}}" value="3" id="{{this.id}}-3">
+      <label for="{{this.id}}-3">3</label>
+      <input type="radio" name="{{this.id}}" value="4" id="{{this.id}}-4">
+      <label for="{{this.id}}-4">4</label>
+    </div>
+  {{/each}}
+  <button type="submit">Submit</button>
+</form>
