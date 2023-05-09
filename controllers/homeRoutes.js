@@ -53,7 +53,7 @@ router.get("/login", async (req, res) => {
 //resources
 router.get("/resources", async (req, res) => {
   try {
-    res.render("about");
+    res.render("resources");
   } catch (err) {
     res.status(400).json(err);
   }
@@ -63,6 +63,14 @@ router.get("/resources", async (req, res) => {
 router.get("/journals", async (req, res) => {
   try {
     res.render("journals");
+  } catch (err) {
+    res.status(400).json(err);
+  }
+});
+
+router.get("/about", async (req, res) => {
+  try {
+    res.render("about");
   } catch (err) {
     res.status(400).json(err);
   }
