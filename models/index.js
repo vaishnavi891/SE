@@ -13,7 +13,7 @@ Calendar.hasMany(Day, {
   onDelete: "CASCADE",
 });
 
-Score.belongsTo(Day, {
+Day.hasOne(Score, {
   foreignKey: "day_id",
 });
 
