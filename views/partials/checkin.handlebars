@@ -1,16 +1,39 @@
-<form action="/api/checkin" method="POST">
-  {{#each questions}}
-    <label for="{{this.id}}">{{this.question}}</label>
-    <div class="rating">
-      <input type="radio" name="{{this.id}}" value="1" id="{{this.id}}-1">
-      <label for="{{this.id}}-1">1</label>
-      <input type="radio" name="{{this.id}}" value="2" id="{{this.id}}-2">
-      <label for="{{this.id}}-2">2</label>
-      <input type="radio" name="{{this.id}}" value="3" id="{{this.id}}-3">
-      <label for="{{this.id}}-3">3</label>
-      <input type="radio" name="{{this.id}}" value="4" id="{{this.id}}-4">
-      <label for="{{this.id}}-4">4</label>
-    </div>
-  {{/each}}
+<form action="/checkin" method="POST">
+  <div>
+    <label for="question1">Question 1:</label>
+    <select name="question1" id="question1">
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+    </select>
+  </div>
+  <div>
+    <label for="question2">Question 2:</label>
+    <select name="question2" id="question2">
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+    </select>
+  </div>
+  <div>
+    <label for="question3">Question 3:</label>
+    <select name="question3" id="question3">
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+    </select>
+  </div>
+  <div>
+    <label for="question4">Question 4:</label>
+    <select name="question4" id="question4">
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+    </select>
+  </div>
   <button type="submit">Submit</button>
 </form>
