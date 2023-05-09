@@ -21,13 +21,6 @@ Day.init(
       allowNull: false,
       isUnique: false,
     },
-    calender_id: {
-      type: DataTypes.INTEGER,
-      references: {
-        model: "calendar",
-        key: "id",
-      },
-    },
   },
   {
     sequelize,
