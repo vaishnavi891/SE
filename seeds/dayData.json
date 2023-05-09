@@ -1,18 +1,14 @@
 [
-    {
-      "day_name": "Monday",
-      "day_of_the_month": 8,
-      "calendar_id": 1
-    },
-    {
-        "day_name": "Tuesday",
-        "day_of_the_month": 9,
-        "calendar_id": 2
-      },
-      {
-        "day_name": "Wednesday",
-        "day_of_the_month": 10,
-        "calendar_id": 3
-      }
-  ]
-  
+  {
+    "checklist_complete": false,
+    "calendar_id": 1
+  },
+  {
+    "checklist_complete": false,
+    "calendar_id": 2
+  },
+  {
+    "checklist_complete": false,
+    "calendar_id": 3
+  }
+]

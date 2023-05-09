@@ -1,7 +1,7 @@
 const { Model, DataTypes } = require("sequelize");
 const sequelize = require("../config/connection");
 
-class Day extends Model {}
+class Day extends Model { }
 
 Day.init(
   {
@@ -11,15 +11,14 @@ Day.init(
       primaryKey: true,
       autoIncrement: true,
     },
-    day_name: {
-      type: DataTypes.STRING,
+    checklist_complete : {
+      type : DataTypes.BOOLEAN,
       allowNull: false,
-      isUnique: false,
     },
-    day_of_the_month: {
-      type: DataTypes.INTEGER,
+    date_created: {
+      type: DataTypes.DATE,
       allowNull: false,
-      isUnique: false,
+      defaultValue: DataTypes.NOW,
     },
   },
   {
