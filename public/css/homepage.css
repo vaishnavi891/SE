@@ -1,0 +1,53 @@
+.daily{
+  display: flex;
+  justify-content: center;
+  margin-bottom: 50px;
+  font-size: 40px;
+ 
+}
+.welcome{
+  border: 2px solid rgb(176, 255, 255);
+  border-radius: 5px;
+}
+
+.title{
+  display: flex;
+  justify-content: center;
+}
+
+
+.moto{
+  display: flex;
+  justify-content: center;
+  font-size: 40px;
+}
+
+.img{
+  margin-left: 100px;
+  width: 80%;
+}
+
+.login-box{
+  display: flex;
+  justify-content: center;
+  margin-top: 60px;
+}
+
+@media (max-width: 768px) {
+  .columns {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .welcome{
+    border: none;
+  }
+  .img{
+    margin: 0;
+    width: 100%;
+  }
+
+  .login-box{
+    margin: 10px;
+  }
+}
