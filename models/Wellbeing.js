@@ -9,12 +9,12 @@ Wellbeing.init(
     wellbeing_input: {
       type: Sequelize.STRING,
       get() {
-        const stringValue = this.getDataValue("wellbeingInfo");
-        return stringValue ? rawValue.split(",") : null;
+        const stringValue = this.getDataValue("wellbeing_input");
+        return stringValue ? stringValue.split(",") : null;
       },
       set(value) {
         const arrayValue = value ? value.join(",") : "";
-        this.setDataValue("wellbeingInfo", arrayValue);
+        this.setDataValue("wellbeing_input", arrayValue);
       },
     },
   },
