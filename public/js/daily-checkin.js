@@ -1,14 +1,26 @@
 const newFormHandler = async (event) => {
   event.preventDefault();
 
-  const q1_value = parseInt(document.querySelector("#question1").value.trim(), 10);
-  const q2_value = parseInt(document.querySelector("#question2").value.trim(), 10);
-  const q3_value = parseInt(document.querySelector("#question3").value.trim(), 10);
-  const q4_value = parseInt(document.querySelector("#question4").value.trim(), 10);
+  const q1_value = parseInt(
+    document.querySelector("#question1").value.trim(),
+    10
+  );
+  const q2_value = parseInt(
+    document.querySelector("#question2").value.trim(),
+    10
+  );
+  const q3_value = parseInt(
+    document.querySelector("#question3").value.trim(),
+    10
+  );
+  const q4_value = parseInt(
+    document.querySelector("#question4").value.trim(),
+    10
+  );
   const day_id = Number(document.querySelector(".id").dataset.dayId);
-  
-  if (q1_value && q2_value && q3_value && q4_value, day_id) {
-    console.log("I'm in")
+
+  if ((q1_value && q2_value && q3_value && q4_value, day_id)) {
+    console.log("I'm in");
     const response = await fetch(`/api/scores`, {
       method: "POST",
       body: JSON.stringify({ q1_value, q2_value, q3_value, q4_value, day_id }),
@@ -76,8 +88,10 @@ const form = document.querySelector("#question-form");
 function updateQuestions() {
   // Update the question text and answer options in the HTML
   questions.forEach((question) => {
-    questionContainer.innerHTML += `<div>
-          <label for="question${question.id}">${question.question}</label>
+    questionContainer.innerHTML += `<div class="field">
+          <label class="label" for="question${question.id}">${
+      question.question
+    }</label>
           <select name="question${question.id}" id="question${question.id}">
             ${question.answers.map(
               (answer) => `<option value="${answer}">${answer}</option>`
@@ -85,8 +99,6 @@ function updateQuestions() {
           </select>
         </div>`;
   });
-
-  
 }
 
 // Call the functions when the page loads
