@@ -1,18 +1,11 @@
-{{!-- 
-medications
-how many times
-check boxes for am/pm
-week at a glance
- --}}
- <div class="habit-tracker">
-  <h2>{{habitName}}</h2>
-  <div class="habit-grid">
-    {{#each days}}
-      <div class="habit-day">
-        <label for="{{this}}">{{this}}</label>
-        <input type="checkbox" id="{{this}}" name="{{../habitName}}" value="{{this}}">
-      </div>
-    {{/each}}
+
+ <div class="habits">
+    <form id="habit-form">
+      <label for="habit-name">Habit:</label>
+      <input type="text" id="habit-name" name="habit-name">
+      <button type="button" id="add-habit-button">Add Habit</button>
+    </form>
   </div>
-  <button class="save-progress">Save Progress</button>
-</div>
+  <div id="habit-list">
+    <!-- The list of habits will be added here -->
+  </div>
