@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { User, Day, Calendar, Score } = require("../models");
+const { User, Day, Log, Score } = require("../models");
 const withAuth = require("../utils/auth");
 
 //Gets all post in db and displays them
@@ -20,6 +20,7 @@ router.get("/dashboard", withAuth, async (req, res) => {
           model: Day,
           include: [Score],
         },
+        Log
       ],
       where :{
         id : req.session.user_id
@@ -27,6 +28,8 @@ router.get("/dashboard", withAuth, async (req, res) => {
     });
     //convert the Sequelize model instances to plain JavaScript objects (allows the use of handlebar)
     const userInfo = userData.get({ plain: true });
+
+    console.log(userInfo);
     
     res.render("dashboard", {
       userInfo,
