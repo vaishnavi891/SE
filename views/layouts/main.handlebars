@@ -1,75 +1,68 @@
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title></title>
-    {{!-- bulma link --}}
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
-    <link rel="stylesheet" href="../css/style.css" />
-    <link rel="stylesheet" href="../css/about.css" />
-    <link rel="stylesheet" href="../css/homepage.css" />
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title></title>
+  {{!-- bulma link --}}
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/about.css" />
+  <link rel="stylesheet" href="../css/homepage.css" />
 
-  <body>
-    <nav
-      class="navbar is-primary"
-      role="navigation"
-      aria-label="main navigation"
-    >
-      <div class="navbar-brand">
-        <a class="navbar-item" href="/">
-          <h1 class="title is-4">Mental Health Tracker</h1>
-        </a>
-        <a
-          role="button"
-          class="navbar-burger burger"
-          aria-label="menu"
-          aria-expanded="false"
-          data-target="navbarBasicExample"
-        >
-          <span aria-hidden="true"></span>
-          <span aria-hidden="true"></span>
-          <span aria-hidden="true"></span>
-        </a>
+<body>
+  <nav class="navbar is-primary" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="/">
+        <h1 class="title is-4">Mental Health Tracker</h1>
+      </a>
+      <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false"
+        data-target="navbarBasicExample">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </a>
+    </div>
+
+    <div id="navbarBasicExample" class="navbar-menu">
+      <div class="navbar-start">
+        <a href="/" class="navbar-item">Home</a>
+        <a href="/resources" class="navbar-item">Resources</a>
+        <a href="/about" class="navbar-item">About</a>
       </div>
 
-      <div id="navbarBasicExample" class="navbar-menu">
-        <div class="navbar-start">
-          <a href="/" class="navbar-item">Home</a>
-          <a href="/resources" class="navbar-item">Resources</a>
-          <a href="/about" class="navbar-item">About</a>
+      <div class="navbar-end">
+        {{#if loggedIn}}
+        <div class="navbar-item">
+          <div class="buttons">
+            <a href="/dashboard" class="button is-primary">Dashboard</a>
+            <a href="/logout" class="button is-light">Log Out</a>
+          </div>
         </div>
-
-        <div class="navbar-end">
-          {{#if loggedIn}}
-            <div class="navbar-item">
-              <div class="buttons">
-                <a href="/dashboard" class="button is-primary">Dashboard</a>
-                <a href="/logout" class="button is-light">Log Out</a>
-              </div>
-            </div>
-          {{else}}
-            <div class="navbar-item">
-              <div class="buttons">
-                <a href="/login" class="button is-primary">Log in</a>
-              </div>
-            </div>
-          {{/if}}
+        {{else}}
+        <div class="navbar-item">
+          <div class="buttons">
+            <a href="/login" class="button is-primary">Log in</a>
+          </div>
         </div>
+        {{/if}}
       </div>
-    </nav>
-    <main>
-      {{{body}}}
-    </main>
-    <!-- Render script for logged in users only -->
-    {{#if loggedIn}}
-      <script src="/js/logout.js"></script>
-      <script src="/js/habit.js"></script>
-      <script src="/js/meds.js"></script>
-    {{/if}}
-  </body>
+    </div>
+  </nav>
+  <main>
+    {{{body}}}
+  </main>
+  <!-- Render script for logged in users only -->
+  {{#if loggedIn}}
+  <script src="/js/logout.js"></script>
+  <script src="/js/habit.js"></script>
+  <script src="/js/meds.js"></script>
+  {{/if}}
+  <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.7/index.global.min.js'></script>
+</body>
+
 </html>
-
