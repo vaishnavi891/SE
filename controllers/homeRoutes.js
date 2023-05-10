@@ -21,15 +21,17 @@ router.get("/dashboard", withAuth, async (req, res) => {
           include: [Score],
         },
       ],
+      where :{
+        id : req.session.user_id
+      }
     });
     //convert the Sequelize model instances to plain JavaScript objects (allows the use of handlebar)
     const userInfo = userData.get({ plain: true });
-
+    
     res.render("dashboard", {
       userInfo,
-      loggedIn: req.session.logged_in,
+      logged_in: req.session.logged_in,
     });
-    res.status(200).json(userData);
   } catch (err) {
     res.status(500).json(err);
   }
@@ -39,7 +41,7 @@ router.get("/dashboard", withAuth, async (req, res) => {
 router.get("/login", async (req, res) => {
   // If the user is already logged in, redirect the request to another route
   if (req.session.logged_in) {
-    res.redirect("/about");
+    res.redirect("/dashboard");
     return;
   }
   res.render("login");

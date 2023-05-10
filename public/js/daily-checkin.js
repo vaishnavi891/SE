@@ -5,10 +5,9 @@ const newFormHandler = async (event) => {
   const q2_value = Number(document.querySelector("#question2").value.trim());
   const q3_value = Number(document.querySelector("#question3").value.trim());
   const q4_value = Number(document.querySelector("#question4").value.trim());
-  const day_id = Number(document.querySelector(".id").value.trim());
-
+  const day_id = Number(document.querySelector(".id").dataset.dayId)
   if (q1_value && q2_value && q3_value && q4_value) {
-    const response = await fetch(`/api/score`, {
+    const response = await fetch(`/api/scores`, {
       method: "POST",
       body: JSON.stringify({ q1_value, q2_value, q3_value, q4_value, day_id }),
       headers: {

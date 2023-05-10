@@ -1,7 +1,7 @@
-<form action="/checkin" method="POST">
+<form>
   <div class="day">
     <h4>Day:{{date_created}}</h4>
-    <div class="id">{{day_id}}
+    <div class="id" data-day-id="{{id}}">
     </div>
   </div>
   <div>
@@ -42,3 +42,4 @@
   </div>
   <button type="submit">Submit</button>
 </form>
+<script src="js/daily-checkin.js"></script>
