@@ -4,8 +4,9 @@ const dayData = require("./dayData.json");
 const scoreData = require("./scoreData.json");
 const logData = require("./logData.json");
 const wellbeingData = require("./wellbeingData.json");
+const medicineData = require("./medicineData.json");
 
-const { User, Day, Score, Log, Wellbeing } = require("../models");
+const { User, Day, Score, Log, Wellbeing, Medicine } = require("../models");
 
 const seedDatabase = async () => {
   await sequelize.sync({ force: true });
@@ -18,6 +19,7 @@ const seedDatabase = async () => {
   await Score.bulkCreate(scoreData);
   await Log.bulkCreate(logData);
   await Wellbeing.bulkCreate(wellbeingData);
+  await Medicine.bulkCreate(medicineData);
   process.exit(0);
 };
 
