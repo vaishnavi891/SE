@@ -14,7 +14,7 @@ router.get("/", async (req, res) => {
 //dashboard
 router.get("/dashboard", withAuth, async (req, res) => {
   try {
-    const userData = await User.findAll({
+    const userData = await User.findOne({
       include: [
         {
           model: Day,
@@ -23,7 +23,7 @@ router.get("/dashboard", withAuth, async (req, res) => {
       ],
     });
     //convert the Sequelize model instances to plain JavaScript objects (allows the use of handlebar)
-    const userInfo = userInfo.map((data) => data.get({ plain: true }));
+    const userInfo = userData.get({ plain: true });
 
     res.render("dashboard", {
       userInfo,
