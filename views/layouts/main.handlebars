@@ -1,34 +1,71 @@
-<!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Mental Health Tracker</title>
-    {{!-- bulma link --}}
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    {{! bulma link }}
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"
+    />
     <link rel="stylesheet" href="../css/style.css" />
     <link rel="stylesheet" href="../css/about.css" />
-</head>
-<body>
-    <nav class"nav">
-        
-                    <a class="link" href="/">Home</a>
-                    <a class="link" href="/resources">Resources</a>
-                    <a class="link" href="/about">About</a>
-                    <a class="link" href="/login">Login</a>
-                     {{#if loggedIn}}
-                     <a class="link" href="/dashboard">Dashboard</a>
-                     <a class="link" href="/logout">Log Out</a>
-                     {{/if}}
-                     <h1 class="app-title">Mental Health Tracker</h1>
+  </head>
+  <body>
+    <nav
+      class="navbar is-primary"
+      role="navigation"
+      aria-label="main navigation"
+    >
+      <div class="navbar-brand">
+        <a class="navbar-item" href="/">
+          <h1 class="title is-4">Mental Health Tracker</h1>
+        </a>
+        <a
+          role="button"
+          class="navbar-burger burger"
+          aria-label="menu"
+          aria-expanded="false"
+          data-target="navbarBasicExample"
+        >
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+      </div>
+
+      <div id="navbarBasicExample" class="navbar-menu">
+        <div class="navbar-start">
+          <a href="/" class="navbar-item">Home</a>
+          <a href="/resources" class="navbar-item">Resources</a>
+          <a href="/about" class="navbar-item">About</a>
+        </div>
+
+        <div class="navbar-end">
+          {{#if loggedIn}}
+            <div class="navbar-item">
+              <div class="buttons">
+                <a href="/dashboard" class="button is-primary">Dashboard</a>
+                <a href="/logout" class="button is-light">Log Out</a>
+              </div>
+            </div>
+          {{else}}
+            <div class="navbar-item">
+              <div class="buttons">
+                <a href="/login" class="button is-primary">Log in</a>
+              </div>
+            </div>
+          {{/if}}
+        </div>
+      </div>
     </nav>
-     <main>
-      {{{ body }}}
+    <main>
+      {{{body}}}
     </main>
-     <!-- Render script for logged in users only -->
-  {{#if loggedIn}}
-  <script src="/js/logout.js"></script>
-  {{/if}}
-</body>
+    <!-- Render script for logged in users only -->
+    {{#if loggedIn}}
+      <script src="/js/logout.js"></script>
+    {{/if}}
+  </body>
 </html>
