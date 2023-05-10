@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { User, Day, Log, Score } = require("../models");
+const { User, Day, Log, Score, Medicine, Wellbeing} = require("../models");
 const withAuth = require("../utils/auth");
 
 //Gets all post in db and displays them
@@ -20,7 +20,9 @@ router.get("/dashboard", withAuth, async (req, res) => {
           model: Day,
           include: [Score],
         },
-        Log
+        Log,
+        Medicine,
+        Wellbeing
       ],
       where :{
         id : req.session.user_id

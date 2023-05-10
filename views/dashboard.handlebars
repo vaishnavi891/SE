@@ -1,8 +1,14 @@
+{{>calendar}}
 {{!-- inside homeRoutes, userInfo (declared on line 26) receives Day db + Score db --}}
 {{#with userInfo.days.[0]}}
 {{>checkin}}
 {{/with}}
 
+
+{{!-- Add all partial that use userInfo --}}
 {{#with userInfo}}
 {{>journal}}
+{{>meds}}
+{{>wellbeing}}
 {{/with}}
+

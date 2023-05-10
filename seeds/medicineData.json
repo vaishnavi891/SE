@@ -2,5 +2,13 @@
     {
         "medicine_input": ["testing3", "testing4"],
         "user_id": 1
+    },
+    {
+        "medicine_input": ["testing3", "testing4"],
+        "user_id": 2
+    },
+    {
+        "medicine_input": ["testing3", "testing4"],
+        "user_id": 3
     }
 ]
