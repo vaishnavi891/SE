@@ -1,0 +1,17 @@
+.daily{
+  display: flex;
+  justify-content: center;
+  margin-bottom: 50px;
+  font-size: 40px;
+}
+.moto{
+  display: flex;
+  justify-content: center;
+ 
+  font-size: 40px;
+}
+
+.img{
+  margin-left: 100px;
+  width: 80%;
+}
