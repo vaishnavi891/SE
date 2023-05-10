@@ -1,11 +1,11 @@
 const router = require('express').Router();
 
-const { User, Calendar} = require('../../models');
+const { User} = require('../../models');
 
 
 router.get('/', async (req, res) => {
     try {
-        const userData = await User.findAll({include : [Calendar]})
+        const userData = await User.findAll()
 
         if(!userData){
             res.status(404).json({error: 404, message : "Cannot find any Users" });

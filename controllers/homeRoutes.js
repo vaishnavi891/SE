@@ -17,13 +17,8 @@ router.get("/dashboard", withAuth, async (req, res) => {
     const userData = await User.findAll({
       include: [
         {
-          model: Calendar,
-          include: [
-            {
-              model: Day,
-              include: [Score],
-            },
-          ],
+          model: Day,
+          include: [Score],
         },
       ],
     });
