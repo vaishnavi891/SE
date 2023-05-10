@@ -1,17 +1,14 @@
 [
   {
     "checklist_complete": false,
-    "calendar_id": 1,
-    "user_id" : 3
+    "user_id" : 1
   },
   {
     "checklist_complete": false,
-    "calendar_id": 2,
-    "user_id": 3
+    "user_id": 2
   },
   {
     "checklist_complete": false,
-    "calendar_id": 3,
     "user_id": 3
   }
 ]
