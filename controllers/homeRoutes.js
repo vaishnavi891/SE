@@ -27,7 +27,7 @@ router.get("/dashboard", withAuth, async (req, res) => {
 
     res.render("dashboard", {
       userInfo,
-      loggedIn: req.session.loggedIn,
+      loggedIn: req.session.logged_in,
     });
     res.status(200).json(userData);
   } catch (err) {
@@ -38,8 +38,8 @@ router.get("/dashboard", withAuth, async (req, res) => {
 //login
 router.get("/login", async (req, res) => {
   // If the user is already logged in, redirect the request to another route
-  if (req.session.loggedIn) {
-    res.redirect("/profile");
+  if (req.session.logged_in) {
+    res.redirect("/about");
     return;
   }
   res.render("login");
