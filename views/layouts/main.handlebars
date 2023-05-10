@@ -4,8 +4,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mental Health Tracker</title>
+    <title></title>
     {{!-- bulma link --}}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
     <link rel="stylesheet" href="../css/style.css" />
     <link rel="stylesheet" href="../css/about.css" />
@@ -13,15 +16,64 @@
 <body>
     <nav class"nav">
         
-                    <a class="link" href="/">Home</a>
-                    <a class="link" href="/resources">Resources</a>
-                    <a class="link" href="/about">About</a>
-                    <a class="link" href="/login">Login</a>
-                     {{#if loggedIn}}
-                     <a class="link" href="/dashboard">Dashboard</a>
-                     <a class="link" href="/logout">Log Out</a>
-                     {{/if}}
-                     <h1 class="app-title">Mental Health Tracker</h1>
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    </a>
+
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+
+  <div id="navbarBasicExample" class="navbar-menu">
+    <div class="navbar-start">
+      <a class="navbar-item">
+        Home
+      </a>
+
+      <a class="navbar-item">
+        
+      </a>
+
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">
+          More
+        </a>
+
+        <div class="navbar-dropdown">
+          <a class="navbar-item">
+            About
+          </a>
+          <a class="navbar-item">
+            Jobs
+          </a>
+          <a class="navbar-item">
+            Contact
+          </a>
+          <hr class="navbar-divider">
+          <a class="navbar-item">
+            Report an issue
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="navbar-end">
+      <div class="navbar-item">
+        <div class="buttons">
+          <a class="button is-primary">
+            <strong>Sign up</strong>
+          </a>
+          <a class="button is-light">
+            Log in
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
     </nav>
      <main>
       {{{ body }}}
@@ -32,3 +84,9 @@
   {{/if}}
 </body>
 </html>
+
+{{!-- A tool that helps users keep track of how they are doing through interactive questions and journaling. We want
+      our users to be aware of their mental health so they can take action to live the best life possible --}}
+
+{{!-- We are a team concerned about people's well being. We want to help improve the overall mental health quality of
+      our users --}}
