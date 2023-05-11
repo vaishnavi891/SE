@@ -1,2 +1,57 @@
 
+.all{
+  border: 2px solid rgb(176, 255, 255);
+  padding: 200px;
+}
+.welcome{
+  margin-left: 70px;
+}
+
+.title{
+  display: flex;
+  justify-content: center;
+  margin-right: 10PX;
+}
+
+.subtitle{
+  margin-top: -20px;
+}
+
+.moto{
+  display: flex;
+  justify-content: center;
+  color: rgb(11, 75, 128);
+  font-size: 40px;
+  margin: 15px;
+}
+
+.img{
+  margin-left: 75px;
+  width: 105%;
+}
+
+.loginbox{
+  display: flex;
+  justify-content: center;
+  margin-top: 60px;
+}
+
+@media (max-width: 875px) {
+  .columns {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .all{
+    border: none;
+  }
+  .img{
+    margin: 0;
+    width: 100%;
+  }
+
+  .loginbox{
+    margin: 10px;
+  }
+}
 
