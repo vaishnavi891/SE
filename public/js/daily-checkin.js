@@ -29,12 +29,15 @@ const newFormHandler = async (event) => {
     });
 
     if (response.ok) {
+      console.log("I'm in")
       const dayResponse = await fetch(`/api/days/${day_id}`, {
         method: "PUT",
         body: JSON.stringify({
-          checklist_complete: true,
-          user_id : user_id
-        })
+          checklist_complete: true 
+        }),
+        headers: {
+          "Content-Type": "application/json",
+        },
       })
       if (dayResponse) {
         document.location.replace("/dashboard");
