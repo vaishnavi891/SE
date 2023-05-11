@@ -6,16 +6,16 @@
     <form action="/submit" method="post">
       {{#each logs as |log|}}
       <div class="journal-entry">
-        <h2 class=" title">{{log.title}}</h2>
-        <p class="subtitle">{{log.date_created}}</p>
+        <h2 class=" title t2">{{log.title}}</h2>
+        <p class="subtitle ">{{log.date_created}}</p>
         <p class="entry">{{log.text}}</p>
       </div>
       {{/each}}
       <div class="box">
-      <label class="title" for="title">Title:</label>
+      <label class="title title2" for="title">Title:</label>
       <input class="input titlein is-primary is-large is-centered" type="text" id="title" name="title">
       <br><br>
-      <label class="text" for="text">Text:</label>
+      <label class="text text2" for="text">Text:</label>
       <textarea class="textarea is-primary is-large" id="text" name="text"></textarea>
   </div>
   <br><br>
