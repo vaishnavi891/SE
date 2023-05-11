@@ -83,7 +83,6 @@ const questions = [
 ];
 
 const questionContainer = document.querySelector("#questions");
-const form = document.querySelector("#question-form");
 
 function updateQuestions() {
   // Update the question text and answer options in the HTML
@@ -91,7 +90,7 @@ function updateQuestions() {
     questionContainer.innerHTML += `<div class="field">
           <label class="label" for="question${question.id}">${
       question.question
-    }</label>
+    }</label> 
           <select name="question${question.id}" id="question${question.id}">
             ${question.answers.map(
               (answer) => `<option value="${answer}">${answer}</option>`
@@ -99,6 +98,9 @@ function updateQuestions() {
           </select>
         </div>`;
   });
+  questionContainer.innerHTML += `<div class="field is-grouped is-grouped-right">
+  <button type="submit" class="button is-primary">Submit</button>
+</div>`;
 }
 
 // Call the functions when the page loads

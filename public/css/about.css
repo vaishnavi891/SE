@@ -31,10 +31,14 @@ blockquote{
   font-size: 50px;
 }
 
-#question1, #question2, #question3, #question4{
-  margin-left: 20px;
-  font-size: 50px;
+ /* #question1, #question2, #question3, #question4{
+  
+}  */
+select {
+  border-radius: 4px;
+  font-size: 1rem;
 }
+
 .submit{
   display: flex;
   justify-content: center;
