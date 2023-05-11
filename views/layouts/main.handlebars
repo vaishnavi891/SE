@@ -5,19 +5,20 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title></title>
-  {{!-- bulma link --}}
+  {{!-- google fonts link, bulma link, css links --}}
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-7V5Yt+30yGBxEqNq7m+k2tPblH5ADQ3heqQO5lcu6T6hcHm4/QAjQY7DhxrL5iC53L7l+vhIpsv1EGiU9Z4ZxA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="../css/style.css" />
-  <link rel="stylesheet" href="../css/about.css" />
   <link rel="stylesheet" href="../css/homepage.css" />
-
-<body>
+  <link rel="stylesheet" href="../css/dashboard.css" />
+<main>
+  {{!-- navbar created to follow all pages using bulma --}}
   <nav class="navbar is-primary" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
+      {{!-- linking buttons to corresponding api page --}}
       <a class="navbar-item" href="/">
         <h1 class="title is-4">Mental Health Tracker</h1>
       </a>
@@ -37,6 +38,7 @@
       </div>
 
       <div class="navbar-end">
+        {{!-- adding conditions for user only if they are logged in --}}
         {{#if logged_in}}
         <div class="navbar-item">
           <div class="buttons">
@@ -54,18 +56,18 @@
       </div>
     </div>
   </nav>
-  <main class="mx-6">
+  {{!-- handlebars route to the paritals and other views --}}
+  <body class="mx-5">
     {{{body}}}
-  </main>
+  </body>
   <!-- Render script for logged in users only -->
   {{#if logged_in}}
-  <script src="./js/calendar.js"></script>
   <script src="/js/logout.js"></script>
-  <script src="/js/habit.js"></script>
-  <script src="/js/meds.js"></script>
   {{/if}}
+  {{!-- clink to outsource calendar --}}
   <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.7/index.global.min.js'></script>
   <script src="https://kit.fontawesome.com/92c033c314.js" crossorigin="anonymous"></script>
 </body>
+</main>
 
 </html>

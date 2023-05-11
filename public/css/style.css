@@ -1,9 +1,10 @@
-    html,
-    body,
-    main {
+    /* adding a background to entire main handlebars */
+    html, body, main {
        height: 100%;
+       background-color: white;
+       margin: 0;
     }
-
+    /* navbar section to follow every page */
     .section {
        min-height: 100vh;
     }
@@ -21,8 +22,6 @@
 
     .navbar {
        background-color: rgb(206, 135, 192);
-
-
 
     }
 
@@ -43,7 +42,12 @@
     /* signup css */
     body {
       background: linear-gradient(#50af8c, #9198e5);
-      
+
+    .hero {
+      background-color: #32e48b;
+      color: #FFFFFF;
+      padding: 3rem 1.5rem;
+      margin-bottom: 1.5rem;
     }
     
     .hero h1 {
@@ -81,3 +85,16 @@
       background-color: #005E90;
       color: #FFFFFF;
     }
+
+  /* css for about page */
+    
+.chaosimg, .growthimg{
+  display: inline;
+  height: 500px;
+  width: 500px;
+  margin-top: 300px;
+}
+
+.t1{
+  font-size: 60px;
+}

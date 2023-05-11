@@ -1,9 +1,9 @@
 document.addEventListener('DOMContentLoaded', async () => {
   var calendarEl = document.getElementById('calendar');
 
-  const day_id = Number(document.querySelector("#user-data").dataset.userId);
+  const userId = Number(document.querySelector("#user-data").dataset.userId);
 
-  const response = await fetch(`/api/users/days/${day_id}`);
+  const response = await fetch(`/api/users/days/${userId}`);
   const data = await response.json();
 
   const greenDays = [];
@@ -13,9 +13,9 @@ document.addEventListener('DOMContentLoaded', async () => {
   console.log(data)
   data.days.forEach((day) => {
     console.log(day.date_created.substring(0, 10));
-    if (!day.checklist_complete) {
+    if (day.checklist_complete) {
       let avgScore = (day.score.q1_value + day.score.q2_value + day.score.q3_value + day.score.q4_value) / 4
-      if (avgScore < 3) {
+      if (avgScore < 2.5) {
         redDays.push({
           start: day.date_created.substring(0, 10),
           display: 'background'

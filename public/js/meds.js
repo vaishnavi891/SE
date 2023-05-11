@@ -1,39 +1,49 @@
-const medForm = document.querySelector('#medication-form');
-const medList = document.querySelector('#medication-list');
-
-// This array will keep track of the habits
-let meds = [];
-
-medForm.addEventListener('submit', (event) => {
-  // Prevent the form from submitting
+const medicationList = document.querySelector("#medication-list");
+const medicationInput = document.querySelector("#medication-name");
+const addMedButton = document.querySelector("#add-medication-button");
+addMedButton.addEventListener("click", async (event) => {
   event.preventDefault();
+  console.log("hi")
+  const medication = medicationInput.value;
+  const userId = Number(document.querySelector("#user-data").dataset.userId);
 
-  // Get the habit name from the input field
-  const medNameInput = document.querySelector('#medication-name');
-  const medName = medNameInput.value.trim();
 
-  // Make sure the habit name is not empty
-  if (medName === '') {
-    return;
+  if (medication) {
+    try {
+      const response = await fetch(`/api/medications/${userId}`)
+      const medicationData = await response.json();
+
+      const newMeds = medicationData.medicine_input
+      newMeds.push(medication);
+
+      const updateMeds = {
+        medicine_input : newMeds,
+        user_id : userId
+      }
+
+
+      const response2 = await fetch(`/api/medications/${userId}`, {
+        method: "PUT",
+        body: JSON.stringify(updateMeds),
+        headers: { "Content-Type": "application/json" },
+      });
+      if (response2.ok) {
+        console.log(newMeds)
+        medicationList.innerHTML =  newMeds
+          .map((medication) => `<input type="checkbox">  ${medication}</input>
+          </br>`)
+          .join("");
+        // Clear the medication input field
+        medicationInput.value = "";
+      } else {
+        console.error("Failed to add medication");
+        return;
+      }
+      // document.location.reload()
+
+    } catch (err) {
+      console.error(err);
+    }
   }
-
-  // Create a new checkbox for the habit
-  const checkbox = document.createElement('input');
-  checkbox.type = 'checkbox';
-  checkbox.id = `medication-${medication.length}`;
-  checkbox.name = 'medications[]';
-  checkbox.value = medName;
-  const label = document.createElement('label');
-  label.for = checkbox.id;
-  label.textContent = medName;
-
-  // Add the checkbox to the list of habits
-  habitList.appendChild(checkbox);
-  habitList.appendChild(label);
-
-  // Add the habit to the array
-  habits.push(habitName);
-
-  // Clear the input field
-  habitNameInput.value = '';
 });
+

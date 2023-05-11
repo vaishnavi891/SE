@@ -1,4 +1,4 @@
-
+{{!-- using bulma to create sections with images --}}
 <section class="hero is-background is-fullheight"
   style="background-image: url('../images/calm2.avif'); background-size: cover;">
   <div class="daily">
@@ -9,7 +9,11 @@
         <p class="subtitle is-2">Welcome to the place that will help you keep track of your mental health.</p>
         <div class="loginbox">
           <div class="control">
-            <button class="button is-primary">Log in or sign up</button>
+            {{!-- creating links to api routes when button is clicked --}}
+            <a href="/login" class="button log is-primary">Log in</a>
+          </div>
+          <div class="control">
+            <a href="/signup" class="button sign is-primary">Sign up</a>
           </div>
         </div>
       </div>

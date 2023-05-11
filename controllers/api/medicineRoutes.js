@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const withAuth = require("../../utils/auth");
-const { Medicine } = require("../../models");
+const { Medicine, User, Day, Score, Log, Wellbeing} = require("../../models");
 
 router.get("/", async (req, res) => {
   try {
@@ -22,7 +22,7 @@ router.get("/:id", async (req, res) => {
   try {
     const MedicineData = await Medicine.findOne({
       where: {
-        id: req.params.id,
+        user_id: req.params.id,
       },
     });
 
@@ -39,7 +39,7 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-router.post("/", async (req, res) => {
+router.put("/", async (req, res) => {
   try {
     const MedicineData = await Medicine.create(req.body);
 
@@ -66,7 +66,7 @@ router.put("/:id", async (req, res) => {
       },
       {
         where: {
-          id: req.params.id,
+          user_id: req.params.id,
         },
       }
     );
@@ -88,7 +88,7 @@ router.delete("/:id", async (req, res) => {
   try {
     const MedicineData = Medicine.destroy({
       where: {
-        id: req.params.id,
+        user_id: req.params.id,
       },
     });
 
@@ -100,10 +100,46 @@ router.delete("/:id", async (req, res) => {
       return;
     }
 
-    res.status(200).json(MedicineData);
+    // const userData = await User.findOne({
+    //   include: [
+    //     {
+    //       model: Day,
+    //       include: [Score],
+    //     },
+    //     Log,
+    //     Medicine,
+    //     Wellbeing,
+    //   ],
+    //   where: {
+    //     id: req.session.user_id,
+    //   },
+    //   order : [[Day, 'date_created', 'desc']]
+    // });
+    // //convert the Sequelize model instances to plain JavaScript objects (allows the use of handlebar)
+    // const userInfo = userData.get({ plain: true });
+
+    // console.log(userInfo);
+
+    // res.render("dashboard", {
+    //   userInfo,
+    //   logged_in: req.session.logged_in,
+    // });
+    res.status(200).json(MedicineData)
   } catch (error) {
     res.status(400).json(err);
   }
 });
+
+// router.post(`/medications/:user_id`, async (req, res) => {
+//   const { user_id } = req.params;
+//   try {
+//     // retrieve all medications for the user from the database
+//     const medications = await Medication.findAll({ where: { user_id } });
+//     res.status(200).json(medications);
+//   } catch (err) {
+//     console.error(err);
+//     res.status(500).json({ message: "Internal server error" });
+//   }
+// });
 
 module.exports = router;
