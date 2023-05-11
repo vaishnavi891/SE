@@ -22,7 +22,7 @@ router.get("/:id", async (req, res) => {
   try {
     const MedicineData = await Medicine.findOne({
       where: {
-        id: req.params.id,
+        user_id: req.params.id,
       },
     });
 
@@ -66,7 +66,7 @@ router.put("/:id", async (req, res) => {
       },
       {
         where: {
-          id: req.params.id,
+          user_id: req.params.id,
         },
       }
     );

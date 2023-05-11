@@ -1,3 +1,5 @@
+const { response } = require("express");
+
 const medForm = document.querySelector('#medication-form');
 const medList = document.querySelector('#medication-list');
 
@@ -37,3 +39,4 @@ medForm.addEventListener('submit', (event) => {
   // Clear the input field
   habitNameInput.value = '';
 });
+

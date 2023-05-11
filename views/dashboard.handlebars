@@ -1,4 +1,4 @@
-<div class="columns mt-4">
+<div class="columns mt-4" id="has-current-day" data-current-day="{{userInfo.days.[0].date_created}}">
     <div class="column is-6">
         {{#with userInfo}}
         {{>calendar}}
@@ -25,3 +25,4 @@
 {{!-- {{>journal}} --}}
 {{>journal}}
 {{/with}}
+<script src="./js/dashboard.js"></script>
