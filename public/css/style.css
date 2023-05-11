@@ -40,3 +40,47 @@
       width: 10%;
     }
     
+    /* signup css */
+    body {
+      background-color: #F5F5F5;
+    }
+    .hero {
+      background-color: #32e48b;
+      color: #FFFFFF;
+      padding: 3rem 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+    .hero h1 {
+      font-size: 3rem;
+      font-weight: bold;
+      margin-bottom: 1rem;
+    }
+    .hero p {
+      font-size: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+    .form-card {
+      background-color: #FFFFFF;
+      padding: 1.5rem;
+      border-radius: 5px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    }
+    .form-card h2 {
+      font-size: 2rem;
+      font-weight: bold;
+      margin-bottom: 1.5rem;
+    }
+    .form-card .field label {
+      font-weight: bold;
+    }
+    .form-card .field:not(:last-child) {
+      margin-bottom: 1.5rem;
+    }
+    .form-card .button {
+      background-color: #0077B5;
+      color: #FFFFFF;
+    }
+    .form-card .button:hover {
+      background-color: #005E90;
+      color: #FFFFFF;
+    }
