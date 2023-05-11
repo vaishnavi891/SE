@@ -11,6 +11,6 @@ router.use("/scores", scoreRoutes);
 router.use("/days", dayRoutes);
 router.use("/logs", logRoutes);
 router.use("/wellbeings", wellbeingRoutes);
-router.use("/medicines", medicineRoutes);
+router.use("/medications", medicineRoutes);
 
 module.exports = router;
