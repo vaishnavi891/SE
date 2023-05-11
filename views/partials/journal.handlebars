@@ -1,9 +1,11 @@
 <section>
+  {{!-- using bulma to create sections, and title defauls --}}
   <div class="title is-1">
     <h1 class="journal">My Journal</h1>
   </div>
   <div class="textin">
     <form action="/submit" method="post">
+    {{!-- connecting to seeds to display on screen --}}
       {{#each logs as |log|}}
       <div class="journal-entry">
         <h2 class=" title t2">{{log.title}}</h2>
