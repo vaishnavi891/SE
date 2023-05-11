@@ -1,17 +1,27 @@
-{{#with userInfo}}
-{{>calendar}}
-{{/with}}
+<div class="columns mt-4">
+    <div class="column is-6">
+        {{#with userInfo}}
+        {{>calendar}}
+        {{/with}}
+    </div>
+    <div class="column is-6">
+        {{#with userInfo.days.[0]}}
+        {{>checkin}}
+        {{/with}}
+    </div>
+</div>
 {{!-- inside homeRoutes, userInfo (declared on line 26) receives Day db + Score db --}}
-{{#with userInfo.days.[0]}}
-{{>checkin}}
-{{/with}}
-
 
 {{!-- Add all partial that use userInfo --}}
 {{#with userInfo}}
+<div class="columns mt-6">
+    <div class="column box mr-3">
+        {{>meds}}
+    </div>
+    <div class="column box">
+        {{>wellbeing}}
+    </div>
+</div>
 {{!-- {{>journal}} --}}
-{{>meds}}
-{{>wellbeing}}
 {{>journal}}
 {{/with}}
-
