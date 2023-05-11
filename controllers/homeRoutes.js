@@ -5,7 +5,7 @@ const withAuth = require("../utils/auth");
 //Gets all post in db and displays them
 router.get("/", async (req, res) => {
   try {
-    res.render("about");
+      res.redirect("/login", {logged_in : req.session.logged_in});
   } catch (err) {
     res.status(400).json(err);
   }
