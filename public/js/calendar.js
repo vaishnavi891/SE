@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     console.log(day.date_created.substring(0, 10));
     if (day.checklist_complete) {
       let avgScore = (day.score.q1_value + day.score.q2_value + day.score.q3_value + day.score.q4_value) / 4
-      if (avgScore < 3) {
+      if (avgScore < 2.5) {
         redDays.push({
           start: day.date_created.substring(0, 10),
           display: 'background'
