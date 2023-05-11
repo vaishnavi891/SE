@@ -1,14 +1,14 @@
-<div class="meds">
-<div id="medication-list">
-  <!-- The list of habits will be added here -->
-  {{#each medicine.medicine_input as |medication|}}
-  <div>{{medication}}</div>
-  {{/each}}
-</div>
-<form id="medication-form">
-  <label for="medication-name">Medicine:</label>
-  <input type="text" id="Medication-name" name="medication-name">
-  <button type="button" id="add-habit-button">Add Medication</button>
-</form>
-</div>
 
+  <div class="meds">
+    <div id="medication-list">
+      <!-- The list of habits will be added here -->
+      {{#each medicine.medicine_input as |medicine|}}
+      <div>{{medication}}</div>
+      {{/each}}
+    </div>
+    <form id="medication-form">
+      <label for="medication-name">Medicine:</label>
+      <input type="text" id="Medication-name" name="medication-name">
+      <button type="button" id="add-habit-button">Add Medication</button>
+    </form>
+  </div>

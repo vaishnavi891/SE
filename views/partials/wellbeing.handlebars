@@ -1,11 +1,11 @@
 
- <div class="habits">
-  <div id="habit-list">
-    <!-- The list of habits will be added here -->
-    {{#each wellbeing.wellbeing_input as |habit|}}
-  <div>{{habit}}</div>
-  {{/each}}
-  </div>
+  <div class="habits">
+    <div id="habit-list">
+      <!-- The list of habits will be added here -->
+      {{#each wellbeing.wellbeing_input as |habit|}}
+      <div>{{habit}}</div>
+      {{/each}}
+    </div>
     <form id="habit-form">
       <label for="habit-name">Habit:</label>
       <input type="text" id="habit-name" name="habit-name">
