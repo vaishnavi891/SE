@@ -1,6 +1,6 @@
 const newFormHandler = async (event) => {
   event.preventDefault();
-
+  console.log('hi')
   const q1_value = parseInt(
     document.querySelector("#question1").value.trim(),
     10
@@ -17,8 +17,8 @@ const newFormHandler = async (event) => {
     document.querySelector("#question4").value.trim(),
     10
   );
-  const day_id = Number(document.querySelector(".id").dataset.dayId);
-
+  const day_id = Number(document.querySelector(".day-id").dataset.dayId);
+  const user_id = Number(document.querySelector(".user-id").dataset.userId);
   if ((q1_value && q2_value && q3_value && q4_value, day_id)) {
     const response = await fetch(`/api/scores`, {
       method: "POST",
@@ -29,7 +29,16 @@ const newFormHandler = async (event) => {
     });
 
     if (response.ok) {
-      document.location.replace("/dashboard");
+      const dayResponse = await fetch(`/api/days/${day_id}`, {
+        method: "PUT",
+        body: JSON.stringify({
+          checklist_complete: true,
+          user_id : user_id
+        })
+      })
+      if (dayResponse) {
+        document.location.replace("/dashboard");
+      }
     } else {
       alert("Failed to submit answers to daily check-in");
     }
@@ -87,13 +96,12 @@ function updateQuestions() {
   // Update the question text and answer options in the HTML
   questions.forEach((question) => {
     questionContainer.innerHTML += `<div class="field">
-          <label class="label" for="question${question.id}">${
-      question.question
-    }</label> 
+          <label class="label" for="question${question.id}">${question.question
+      }</label> 
           <select name="question${question.id}" id="question${question.id}">
             ${question.answers.map(
-              (answer) => `<option value="${answer}">${answer}</option>`
-            )}
+        (answer) => `<option value="${answer}">${answer}</option>`
+      )}
           </select>
         </div>`;
   });
