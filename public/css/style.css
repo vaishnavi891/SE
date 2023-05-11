@@ -44,22 +44,17 @@
       background: linear-gradient(#50af8c, #9198e5);
       height: 100%;
     }
-    /* .hero {
-      background-color: #32e48b;
-      color: #FFFFFF;
-      padding: 3rem 1.5rem;
-      margin-bottom: 1.5rem;
-    } */
-    
-    .hero h1 {
+   
+    .t3 {
       font-size: 2rem;
       font-weight: bold;
-      margin-bottom: 1rem;
+      margin: 1rem;
     }
-    .hero p {
+    .sub{
+      display: flex;
+      justify-content: center;
       font-size: 1.5rem;
       margin-bottom: 1.5rem;
-
     }
     .form-card {
       background-color: #ffffffa3;
