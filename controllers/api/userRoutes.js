@@ -1,6 +1,6 @@
 const router = require('express').Router();
 
-const { User} = require('../../models');
+const { User, Day, Log, Score} = require('../../models');
 
 
 router.get('/', async (req, res) => {
@@ -17,6 +17,24 @@ router.get('/', async (req, res) => {
     } catch (err) {
         res.status(400).json(err);
     }
+})
+
+router.get('/days/:id', async (req, res) => {
+  try {
+      const userData = await User.findByPk(req.params.id, {
+        include : [{model : Day, include: [Score]}]
+      })
+
+      if(!userData){
+          res.status(404).json({error: 404, message : "Cannot find any Users" });
+          return
+      }
+
+      res.status(200).json(userData);
+
+  } catch (err) {
+      res.status(400).json(err);
+  }
 })
 
 router.post('/', async (req, res) => {

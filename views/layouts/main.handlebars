@@ -36,11 +36,11 @@
       </div>
 
       <div class="navbar-end">
-        {{#if loggedIn}}
+        {{#if logged_in}}
         <div class="navbar-item">
           <div class="buttons">
             <a href="/dashboard" class="button is-primary">Dashboard</a>
-            <a href="/logout" class="button is-light">Log Out</a>
+            <btn id="logout"class="button is-light">Log Out</btn>
           </div>
         </div>
         {{else}}
@@ -57,7 +57,7 @@
     {{{body}}}
   </main>
   <!-- Render script for logged in users only -->
-  {{#if loggedIn}}
+  {{#if logged_in}}
   <script src="/js/logout.js"></script>
   <script src="/js/habit.js"></script>
   <script src="/js/meds.js"></script>

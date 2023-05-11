@@ -5,7 +5,7 @@ const withAuth = require("../utils/auth");
 //Gets all post in db and displays them
 router.get("/", async (req, res) => {
   try {
-    res.render("about");
+      res.redirect("/login");
   } catch (err) {
     res.status(400).json(err);
   }
@@ -55,7 +55,7 @@ router.get("/login", async (req, res) => {
 //resources
 router.get("/resources", async (req, res) => {
   try {
-    res.render("resources");
+    res.render("resources", {logged_in : req.session.logged_in});
   } catch (err) {
     res.status(400).json(err);
   }
@@ -64,7 +64,7 @@ router.get("/resources", async (req, res) => {
 //journals
 router.get("/journals", async (req, res) => {
   try {
-    res.render("journals");
+    res.render("journals", {logged_in : req.session.logged_in});
   } catch (err) {
     res.status(400).json(err);
   }
@@ -72,7 +72,7 @@ router.get("/journals", async (req, res) => {
 
 router.get("/about", async (req, res) => {
   try {
-    res.render("about");
+    res.render("about", {logged_in : req.session.logged_in});
   } catch (err) {
     res.status(400).json(err);
   }
