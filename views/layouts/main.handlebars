@@ -55,9 +55,15 @@
   </nav>
   <main>
     {{{body}}}
+    {{!-- {{> calendar}}
+    {{> checkin}}
+    {{> meds}}
+    {{> wellbeing}}
+    {{> journal}} --}}
   </main>
   <!-- Render script for logged in users only -->
   {{#if logged_in}}
+  <script src="./js/calendar.js"></script>
   <script src="/js/logout.js"></script>
   <script src="/js/habit.js"></script>
   <script src="/js/meds.js"></script>

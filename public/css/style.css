@@ -30,3 +30,13 @@
        font-weight: bold;
        font-family: 'Poppins', sans-serif;
     }
+
+    /* .flex-container and .date-image are in checkin.handlebar */
+    .flex-container {
+      display: flex;
+      align-items: center;
+    }
+    .date-image {
+      width: 10%;
+    }
+    
