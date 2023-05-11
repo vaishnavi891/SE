@@ -1,4 +1,4 @@
-<div class="columns mt-4 b">
+<div class="columns mt-4">
     <div class="column is-6">
         {{#with userInfo}}
         {{>calendar}}
@@ -15,10 +15,10 @@
 {{!-- Add all partial that use userInfo --}}
 {{#with userInfo}}
 <div class="columns mt-6">
-    <div class="column">
+    <div class="column box mr-3">
         {{>meds}}
     </div>
-    <div class="column">
+    <div class="column box">
         {{>wellbeing}}
     </div>
 </div>
