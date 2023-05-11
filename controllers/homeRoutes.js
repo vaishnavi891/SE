@@ -14,6 +14,28 @@ router.get("/", async (req, res) => {
 //dashboard
 router.get("/dashboard", withAuth, async (req, res) => {
   try {
+
+    //Find most recent date of the user
+    const mostRecentDay = await Day.findAll({
+      limit: 1,
+      where: {
+        user_id: req.session.user_id,
+      },
+      order: [['date_created', 'desc']]
+    });
+
+    //Compare Dates 
+    let getDate1 = new Date(mostRecentDay[0].date_created);
+    let getDate2 = new Date();
+
+    //If not the current day create a new Day database entry
+    if (getDate1.toDateString() !== getDate2.toDateString()) {
+      const newDate = await Day.create({
+        checklist_complete : false,
+        user_id : req.session.user_id
+      })
+    }
+
     const userData = await User.findOne({
       include: [
         {
@@ -27,6 +49,7 @@ router.get("/dashboard", withAuth, async (req, res) => {
       where: {
         id: req.session.user_id,
       },
+      order : [[Day, 'date_created', 'desc']]
     });
     //convert the Sequelize model instances to plain JavaScript objects (allows the use of handlebar)
     const userInfo = userData.get({ plain: true });

@@ -20,7 +20,8 @@ router.get("/", async (req, res) => {
 router.get("/days/:id", async (req, res) => {
   try {
     const userData = await User.findByPk(req.params.id, {
-      include: [{ model: Day, include: [Score] }],
+      include: [{ model: Day, include: [Score], }],
+      order : [[Day, 'date_created', 'desc']],
     });
 
     if (!userData) {
