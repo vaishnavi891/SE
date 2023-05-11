@@ -40,15 +40,15 @@
     }
     
     /* signup css */
-    body {
+    .hero-body {
       background: linear-gradient(#50af8c, #9198e5);
-
-    .hero {
+    }
+    /* .hero {
       background-color: #32e48b;
       color: #FFFFFF;
       padding: 3rem 1.5rem;
       margin-bottom: 1.5rem;
-    }
+    } */
     
     .hero h1 {
       font-size: 2rem;
