@@ -54,7 +54,7 @@ router.put("/:id", async (req, res) => {
   try {
     const dayData = await Day.update(
       {
-        ...req.body,
+        checklist_complete : req.body.checklist_complete
       },
       {
         where: {
@@ -71,7 +71,7 @@ router.put("/:id", async (req, res) => {
     }
 
     res.status(200).json(dayData);
-  } catch (error) {
+  } catch (err) {
     res.status(400).json(err);
   }
 });

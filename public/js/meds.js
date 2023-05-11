@@ -13,12 +13,18 @@ addMedButton.addEventListener("click", async (event) => {
       const response = await fetch(`/api/medications/${userId}`)
       const medicationData = await response.json();
 
-      const newMeds = medicationData.medicine_input
-      newMeds.push(medication);
+      let newMeds = medicationData.medicine_input
 
+      if (newMeds) {
+        newMeds.push(medication);
+      }
+      else{
+        newMeds = []
+        newMeds.push(medication)
+      }
       const updateMeds = {
-        medicine_input : newMeds,
-        user_id : userId
+        medicine_input: newMeds,
+        user_id: userId
       }
 
 
@@ -29,7 +35,7 @@ addMedButton.addEventListener("click", async (event) => {
       });
       if (response2.ok) {
         console.log(newMeds)
-        medicationList.innerHTML =  newMeds
+        medicationList.innerHTML = newMeds
           .map((medication) => `<input type="checkbox">  ${medication}</input>
           </br>`)
           .join("");
