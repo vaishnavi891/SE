@@ -1,8 +1,9 @@
-<div class="meds">
+<div class="meds" id="user-data" data-user-id="{{id}}">
   <div id="medication-list">
     <!-- The list of habits will be added here -->
     {{#each medicine.medicine_input as |medication|}}
-    <div>{{medication}}</div>
+    <input type="checkbox">  {{medication}}</input>
+    <br>
     {{/each}}
   </div>
   <form id="medication-form">
@@ -11,3 +12,4 @@
     <button type="button" id="add-medication-button">Add Medication</button>
   </form>
 </div>
+<script src="./js/meds.js"></script>
