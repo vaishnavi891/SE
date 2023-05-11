@@ -10,19 +10,20 @@
         {{/with}}
     </div>
 </div>
-{{!-- inside homeRoutes, userInfo (declared on line 26) receives Day db + Score db --}}
 
 {{!-- Add all partial that use userInfo --}}
 {{#with userInfo}}
 <div class="columns mt-6">
-    <div class="column box mr-3">
+    <div class="column box" style="margin: 20px;">
         {{>meds}}
     </div>
-    <div class="column box">
+    <div class="column box" style="margin: 20px;">
         {{>wellbeing}}
     </div>
 </div>
 {{!-- {{>journal}} --}}
-{{>journal}}
+<div class="box">
+    {{>journal}}
+</div>
 {{/with}}
 <script src="./js/dashboard.js"></script>

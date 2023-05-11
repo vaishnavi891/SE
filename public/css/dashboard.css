@@ -1,0 +1,58 @@
+/* #question1, #question2, #question3, #question4{
+  
+}  */
+select {
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.submit{
+  display: flex;
+  justify-content: center;
+  margin-top:50px;
+}
+
+.journal{
+  display: flex;
+  justify-content: center;
+  margin: 30px;
+  font-size: 80px;
+  color: rgb(1, 30, 27);
+  border-bottom: 5px solid rgb(176, 255, 255);
+  
+}
+
+.journal-entry{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 300px;
+}
+.subtitle{
+  padding-top: 20px;
+  font-size: 30px;
+}
+.entry{
+  font-size: 30px;
+}
+.title2, .text2, .t2{
+  display: flex;
+  justify-content: center;
+  color: aquamarine;
+  font-size: 50px;
+}
+.textin{
+  display: flex;
+  justify-content: center;
+}
+
+.button2{
+  display: flex;
+  justify-content: center;
+}
+
+@media (max-width: 860px) {
+  .journal-entry{
+    margin-top: 70px;
+  }
+}
