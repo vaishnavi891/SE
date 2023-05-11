@@ -95,14 +95,37 @@ router.post("/logout", (req, res) => {
 router.post("/signup", async (req, res) => {
   try {
     const userData = await User.create(req.body);
+    
+    if(!userData){
+      res.status(404).json(userData)
+      return;
+    }
 
+    const dayData = await Day.create({
+      checklist_complete : false,
+      user_id : userData.id,
+    })
+
+    if(!dayData){
+      res.status(404).json(userData)
+      await User.destroy({
+        where : {
+          id : userData.id
+        }
+      })
+      res.status(400).json(dayData)
+      return;
+    }
+
+    console.log(dayData)
     req.session.save(() => {
       req.session.user_id = userData.id;
       req.session.logged_in = true;
-      res.json({
+      res.status(200).json({
         user: userData,
         message: "You are now logged in!",
         user_id: req.session.user_id,
+        day: dayData
       });
     });
   } catch (err) {
