@@ -1,11 +1,11 @@
 const router = require("express").Router();
-const { User, Day, Log, Score, Medicine, Wellbeing} = require("../models");
+const { User, Day, Log, Score, Medicine, Wellbeing } = require("../models");
 const withAuth = require("../utils/auth");
 
 //Gets all post in db and displays them
 router.get("/", async (req, res) => {
   try {
-      res.redirect("/login");
+    res.redirect("/login");
   } catch (err) {
     res.status(400).json(err);
   }
@@ -22,17 +22,17 @@ router.get("/dashboard", withAuth, async (req, res) => {
         },
         Log,
         Medicine,
-        Wellbeing
+        Wellbeing,
       ],
-      where :{
-        id : req.session.user_id
-      }
+      where: {
+        id: req.session.user_id,
+      },
     });
     //convert the Sequelize model instances to plain JavaScript objects (allows the use of handlebar)
     const userInfo = userData.get({ plain: true });
 
     console.log(userInfo);
-    
+
     res.render("dashboard", {
       userInfo,
       logged_in: req.session.logged_in,
@@ -55,7 +55,7 @@ router.get("/login", async (req, res) => {
 //resources
 router.get("/resources", async (req, res) => {
   try {
-    res.render("resources", {logged_in : req.session.logged_in});
+    res.render("resources", { logged_in: req.session.logged_in });
   } catch (err) {
     res.status(400).json(err);
   }
@@ -64,7 +64,7 @@ router.get("/resources", async (req, res) => {
 //journals
 router.get("/journals", async (req, res) => {
   try {
-    res.render("journals", {logged_in : req.session.logged_in});
+    res.render("journals", { logged_in: req.session.logged_in });
   } catch (err) {
     res.status(400).json(err);
   }
@@ -72,7 +72,15 @@ router.get("/journals", async (req, res) => {
 
 router.get("/about", async (req, res) => {
   try {
-    res.render("about", {logged_in : req.session.logged_in});
+    res.render("about", { logged_in: req.session.logged_in });
+  } catch (err) {
+    res.status(400).json(err);
+  }
+});
+
+router.get("/signup", async (req, res) => {
+  try {
+    res.render("signup");
   } catch (err) {
     res.status(400).json(err);
   }
