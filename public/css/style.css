@@ -1,11 +1,10 @@
-    html,
-    body,
-    main {
+    /* adding a background to entire main handlebars */
+    html, body, main {
        height: 100%;
        background-color: white;
        margin: 0;
     }
-
+    /* navbar section to follow every page */
     .section {
        min-height: 100vh;
     }
@@ -81,7 +80,7 @@
       color: #FFFFFF;
     }
 
-    /* css for about page */
+  /* css for about page */
     
 .chaosimg, .growthimg{
   display: inline;

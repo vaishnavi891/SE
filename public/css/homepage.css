@@ -1,4 +1,4 @@
-
+/* adding a border and making it fit page well */
 .all{
   border: 2px solid rgb(176, 255, 255);
   padding: 200px;
@@ -30,6 +30,7 @@
 .sign{
   margin-left: 75px;
 }
+/* adding responsiveness wen under 875px */
 
 @media (max-width: 875px) {
   .columns {
