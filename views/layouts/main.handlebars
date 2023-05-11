@@ -14,8 +14,10 @@
   <link rel="stylesheet" href="../css/homepage.css" />
   <link rel="stylesheet" href="../css/dashboard.css" />
 <main>
+  {{!-- navbar created to follow all pages using bulma --}}
   <nav class="navbar is-primary" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
+      {{!-- linking buttons to corresponding api page --}}
       <a class="navbar-item" href="/">
         <h1 class="title is-4">Mental Health Tracker</h1>
       </a>
@@ -35,6 +37,7 @@
       </div>
 
       <div class="navbar-end">
+        {{!-- adding conditions for user only if they are logged in --}}
         {{#if logged_in}}
         <div class="navbar-item">
           <div class="buttons">
@@ -52,6 +55,7 @@
       </div>
     </div>
   </nav>
+  {{!-- handlebars route to the paritals and other views --}}
   <body class="mx-5">
     {{{body}}}
   </body>
@@ -62,6 +66,7 @@
   <script src="/js/habit.js"></script>
   <script src="/js/meds.js"></script>
   {{/if}}
+  {{!-- clink to outsource calendar --}}
   <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.7/index.global.min.js'></script>
 </main>
 
