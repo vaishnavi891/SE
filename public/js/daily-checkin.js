@@ -20,7 +20,6 @@ const newFormHandler = async (event) => {
   const day_id = Number(document.querySelector(".id").dataset.dayId);
 
   if ((q1_value && q2_value && q3_value && q4_value, day_id)) {
-    console.log("I'm in");
     const response = await fetch(`/api/scores`, {
       method: "POST",
       body: JSON.stringify({ q1_value, q2_value, q3_value, q4_value, day_id }),

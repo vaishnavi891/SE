@@ -80,6 +80,7 @@ router.get("/about", async (req, res) => {
 
 router.get("/signup", async (req, res) => {
   try {
+    console.log(req.session.logged_in)
     res.render("signup");
   } catch (err) {
     res.status(400).json(err);
