@@ -98,6 +98,9 @@ function updateQuestions() {
           </select>
         </div>`;
   });
+  questionContainer.innerHTML += `<div class="field is-grouped is-grouped-right">
+  <button type="submit" class="button is-primary">Submit</button>
+</div>`;
 }
 
 // Call the functions when the page loads
