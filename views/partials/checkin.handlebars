@@ -1,8 +1,11 @@
 <div class="box">
   <form id="questions">
-    <div class="day">
-      <h4 class="title is-4">Day: {{date_created}}</h4>
+    <div class="date-container">
+       <div class="flex-container">
+      <h4 class="title is-3">{{format_date date_created "dddd, MMMM Do"}}</h4>
+      <img src="../images/cute-cat-gif.gif" alt="Image description" class="date-image">
       <div class="id" data-day-id="{{id}}">
+         </div>
       </div>
     </div>
     
