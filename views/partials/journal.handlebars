@@ -1,23 +1,27 @@
-<div class="title is-1">
-  <h1 class="journal">My Journal</h1>
-</div>
-<div class="textin">
-  <form action="/submit" method="post">
-{{#each logs as |log|}}
-<div class="box journal-entry">
-  <h2 class="title">{{log.title}}</h2>
-  <p class="subtitle">{{log.date_created}}</p>
-  <p class="entry">{{log.text}}</p>
-</div>
-{{/each}}
-    <label class="title" for="title">Title:</label>
-    <input class="input titlein is-primary is-large" type="text" id="title" name="title">
-    <br><br>
-    <label class="text" for="text">Text:</label>
-    <textarea class="textarea is-primary is-large" id="text" name="text"></textarea>
-</div>
-<br><br>
-<div class="button2">
-  <input class="button is-success is-light is-medium" type="submit" value="Submit">
-</div>
-</form>
+<section>
+  <div class="title is-1">
+    <h1 class="journal">My Journal</h1>
+  </div>
+  <div class="textin">
+    <form action="/submit" method="post">
+      {{#each logs as |log|}}
+      <div class="journal-entry">
+        <h2 class=" title">{{log.title}}</h2>
+        <p class="subtitle">{{log.date_created}}</p>
+        <p class="entry">{{log.text}}</p>
+      </div>
+      {{/each}}
+      <div class="box">
+      <label class="title" for="title">Title:</label>
+      <input class="input titlein is-primary is-large is-centered" type="text" id="title" name="title">
+      <br><br>
+      <label class="text" for="text">Text:</label>
+      <textarea class="textarea is-primary is-large" id="text" name="text"></textarea>
+  </div>
+  <br><br>
+  <div class="button2">
+    <input class="button is-success is-light is-medium" type="submit" value="Submit">
+  </div>
+  </div>
+  </form>
+</section>

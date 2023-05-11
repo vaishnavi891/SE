@@ -13,8 +13,8 @@
   <link rel="stylesheet" href="../css/style.css" />
   <link rel="stylesheet" href="../css/about.css" />
   <link rel="stylesheet" href="../css/homepage.css" />
-
-<body>
+  <link rel="stylesheet" href="../css/dashboard.css" />
+<main>
   <nav class="navbar is-primary" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
       <a class="navbar-item" href="/">
@@ -53,9 +53,9 @@
       </div>
     </div>
   </nav>
-  <main class="mx-6">
+  <body class="mx-5  is-mobile">
     {{{body}}}
-  </main>
+  </body>
   <!-- Render script for logged in users only -->
   {{#if logged_in}}
   <script src="./js/calendar.js"></script>
@@ -64,6 +64,6 @@
   <script src="/js/meds.js"></script>
   {{/if}}
   <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.7/index.global.min.js'></script>
-</body>
+</main>
 
 </html>
