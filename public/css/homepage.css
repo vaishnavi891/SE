@@ -27,6 +27,9 @@
   justify-content: center;
   margin-top: 60px;
 }
+.sign{
+  margin-left: 75px;
+}
 
 @media (max-width: 875px) {
   .columns {
