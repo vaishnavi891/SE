@@ -1,30 +1,29 @@
-
-    <div class="columns mt-4">
-        <div class="column is-6">
-            {{#with userInfo}}
-            {{>calendar}}
-            {{/with}}
-        </div>
-        <div class="column is-6">
-            {{#with userInfo.days.[0]}}
-            {{>checkin}}
-            {{/with}}
-        </div>
-    </div>
-    {{!-- inside homeRoutes, userInfo (declared on line 26) receives Day db + Score db --}}
-
-    {{!-- Add all partial that use userInfo --}}
-    {{#with userInfo}}
-    <div class="columns mt-6">
-        <div class="column box" style="margin: 20px;">
-            {{>meds}}
-        </div>
-        <div class="column box" style="margin: 20px;">
-            {{>wellbeing}}
-        </div>
-    </div>
-    {{!-- {{>journal}} --}}
-    <div class="column box">
-        {{>journal}}
+<div class="columns mt-4" id="has-current-day" data-current-day="{{userInfo.days.[0].date_created}}">
+    <div class="column is-6">
+        {{#with userInfo}}
+        {{>calendar}}
         {{/with}}
     </div>
+    <div class="column is-6">
+        {{#with userInfo.days.[0]}}
+        {{>checkin}}
+        {{/with}}
+    </div>
+</div>
+
+{{!-- Add all partial that use userInfo --}}
+{{#with userInfo}}
+<div class="columns mt-6">
+    <div class="column box" style="margin: 20px;">
+        {{>meds}}
+    </div>
+    <div class="column box" style="margin: 20px;">
+        {{>wellbeing}}
+    </div>
+</div>
+{{!-- {{>journal}} --}}
+<div class="box">
+    {{>journal}}
+</div>
+{{/with}}
+<script src="./js/dashboard.js"></script>
