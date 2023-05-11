@@ -3,27 +3,30 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   const day_id = Number(document.querySelector("#user-data").dataset.userId);
 
-  const response = await fetch(`/api/users/days/${day_id}`);   
+  const response = await fetch(`/api/users/days/${day_id}`);
   const data = await response.json();
-  
+
   const greenDays = [];
   const redDays = [];
 
   //For each day of the user assign a color based on the average of the given answers
+  console.log(data)
   data.days.forEach((day) => {
-    let avgScore = (day.score.q1_value + day.score.q2_value + day.score.q3_value +day.score.q4_value) / 4
     console.log(day.date_created.substring(0, 10));
-    if(avgScore < 3){
-      redDays.push({
-        start: day.date_created.substring(0, 10),
-        display : 'background'
-      });
-    }
-    else{
-      greenDays.push({
-        start: day.date_created.substring(0, 10),
-        display : 'background'
-      });
+    if (!day.checklist_complete) {
+      let avgScore = (day.score.q1_value + day.score.q2_value + day.score.q3_value + day.score.q4_value) / 4
+      if (avgScore < 3) {
+        redDays.push({
+          start: day.date_created.substring(0, 10),
+          display: 'background'
+        });
+      }
+      else {
+        greenDays.push({
+          start: day.date_created.substring(0, 10),
+          display: 'background'
+        });
+      }
     }
   });
 
@@ -33,12 +36,12 @@ document.addEventListener('DOMContentLoaded', async () => {
       {
         events: redDays,
         color: 'red',
-        textColor : 'black'
+        textColor: 'black'
       },
       {
         events: greenDays,
         color: 'green',
-        textColor : 'black'
+        textColor: 'black'
       }
     ]
   });
