@@ -1,7 +1,7 @@
 const habitList = document.querySelector("#habit-list");
 const habitInput = document.querySelector("#habit-name");
-const addMedButton = document.querySelector("#add-habit-button");
-addMedButton.addEventListener("click", async (event) => {
+const addHabitButton = document.querySelector("#add-habit-button");
+addHabitButton.addEventListener("click", async (event) => {
   event.preventDefault();
   console.log("hi")
   const habit = habitInput.value;
@@ -13,29 +13,29 @@ addMedButton.addEventListener("click", async (event) => {
       const response = await fetch(`/api/habits/${userId}`)
       const habitData = await response.json();
 
-      let newMeds = habitData.medicine_input
+      let newHabit = habitData.wellbeing_input
 
-      if (newMeds) {
-        newMeds.push(habit);
+      if (newHabit) {
+        newHabit.push(habit);
       }
       else{
-        newMeds = []
-        newMeds.push(habit)
+        newHabit = []
+        newHabit.push(habit)
       }
-      const updateMeds = {
-        medicine_input: newMeds,
+      const updateHabit = {
+        wellbeing_input: newHabit,
         user_id: userId
       }
 
 
       const response2 = await fetch(`/api/habits/${userId}`, {
         method: "PUT",
-        body: JSON.stringify(updateMeds),
+        body: JSON.stringify(updateHabit),
         headers: { "Content-Type": "application/json" },
       });
       if (response2.ok) {
-        console.log(newMeds)
-        habitList.innerHTML = newMeds
+        console.log(newHabit)
+        habitList.innerHTML = newHabit
           .map((habit) => `<input type="checkbox">  ${habit}</input>
           </br>`)
           .join("");
@@ -45,7 +45,7 @@ addMedButton.addEventListener("click", async (event) => {
         console.error("Failed to add habit");
         return;
       }
-      
+
     } catch (err) {
       console.error(err);
     }

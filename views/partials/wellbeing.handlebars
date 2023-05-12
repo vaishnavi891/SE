@@ -1,7 +1,7 @@
 <form id="habit-form">
-  <label for="habit-name">Medicine:</label>
+  <label for="habit-name">Habits:</label>
 
-  <div class="meds" id="user-data" data-user-id="{{id}}">
+  <div class="habits" id="user-data" data-user-id="{{id}}">
     <div id="habit-list">
       <!-- The list of habits will be added here -->
       {{#each wellbeing.wellbeing_input as |habit|}}
@@ -11,5 +11,6 @@
     </div>
     <input type="text" id="habit-name" name="habit-name" />
     <button type="button" id="add-habit-button">Add Habit</button>
+</div>
 </form>
 <script src="./js/habit.js"></script>
