@@ -10,7 +10,7 @@ router.use("/users", userRoutes);
 router.use("/scores", scoreRoutes);
 router.use("/days", dayRoutes);
 router.use("/logs", logRoutes);
-router.use("/wellbeings", wellbeingRoutes);
+router.use("/habits", wellbeingRoutes);
 router.use("/medications", medicineRoutes);
 
 module.exports = router;

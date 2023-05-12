@@ -1,10 +1,10 @@
 const router = require("express").Router();
 
-const { User, Day, Score } = require("../../models");
+const { User, Day, Log, Score, Medicine, Wellbeing } = require("../../models");
 
 router.get("/", async (req, res) => {
   try {
-    const userData = await User.findAll();
+    const userData = await User.findAll({include:[Log]});
 
     if (!userData) {
       res.status(404).json({ error: 404, message: "Cannot find any Users" });
@@ -102,11 +102,12 @@ router.post("/signup", async (req, res) => {
       return;
     }
 
+    //Create first day for the user on sign up
     const dayData = await Day.create({
       checklist_complete : false,
       user_id : userData.id,
     })
-
+    //If fails to do so destroy user and end the process
     if(!dayData){
       res.status(404).json(userData)
       await User.destroy({
@@ -118,6 +119,40 @@ router.post("/signup", async (req, res) => {
       return;
     }
 
+    //Create first medicine for the user on sign up
+    const medicineData = await Medicine.create({
+      medicine_input : [],
+      user_id : userData.id,
+    })
+    //If fails to do so destroy user and end the process
+    if(!medicineData){
+      res.status(404).json(userData)
+      await User.destroy({
+        where : {
+          id : userData.id
+        }
+      })
+      res.status(400).json(medicineData)
+      return;
+    }
+
+    //Create first wellbeing for the user on sign up
+    const wellbeingData = await Wellbeing.create({
+      wellbeing_input : [],
+      user_id : userData.id,
+    })
+    //If fails to do so destroy user and end the process
+    if(!wellbeingData){
+      res.status(404).json(userData)
+      await User.destroy({
+        where : {
+          id : userData.id
+        }
+      })
+      res.status(400).json(wellbeingData)
+      return;
+    }
+
     console.log(dayData)
     req.session.save(() => {
       req.session.user_id = userData.id;
@@ -126,7 +161,9 @@ router.post("/signup", async (req, res) => {
         user: userData,
         message: "You are now logged in!",
         user_id: req.session.user_id,
-        day: dayData
+        day: dayData,
+        medicine : medicineData,
+        wellbeing : wellbeingData
       });
     });
   } catch (err) {
