@@ -31,7 +31,8 @@ router.get("/dashboard", withAuth, async (req, res) => {
     //Compare Dates 
     let getDate1 = new Date(mostRecentDay[0].date_created);
     let getDate2 = new Date();
-
+    
+    console.log(getDate1.toDateString() === getDate2.toDateString())
     //If not the current day create a new Day database entry
     if (getDate1.toDateString() !== getDate2.toDateString()) {
       const newDate = await Day.create({
