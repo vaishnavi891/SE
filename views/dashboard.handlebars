@@ -1,4 +1,6 @@
-<div id="dashboard-container">
+<div class="section is-background is-fullheight"
+  style="background-image: url('./images/cloud.jpg'); background-size: cover;"
+>
     {{!-- bulma used to display partials on screen --}}
     <div class="columns mt-4" id="has-current-day" data-current-day="{{userInfo.days.[0].date_created}}">
         <div class="column box is-6">
@@ -24,7 +26,7 @@
         </div>
     </div>
     {{!-- {{>journal}} --}}
-    <div class="box">
+    <div class="journal">
         {{>journal}}
     </div>
     {{/with}}

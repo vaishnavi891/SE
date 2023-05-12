@@ -1,3 +1,4 @@
+
 /* #question1, #question2, #question3, #question4{
   
 }  */
@@ -18,10 +19,13 @@ select {
   margin: 30px;
   font-size: 80px;
   color: rgb(1, 30, 27);
-  border-bottom: 5px solid rgb(176, 255, 255);
   
 }
 
+.journal2{
+  border-bottom: 5px solid rgb(220, 251, 251);
+  padding-bottom: 15px;
+}
 .journal-entry{
   display: flex;
   flex-direction: column;
@@ -49,6 +53,7 @@ select {
 .button2{
   display: flex;
   justify-content: center;
+ 
 }
 
 @media (max-width: 860px) {
