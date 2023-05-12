@@ -1,29 +1,19 @@
-{{!-- <div class="meds" id="user-data" data-user-id="{{id}}">
-  <div id="medication-list">
-    <!-- The list of habits will be added here -->
-    {{#each medicine.medicine_input as |medication|}}
-    <input type="checkbox">  {{medication}}</input>
-    <br>
-    {{/each}}
-  </div> --}}
-  
-  <form id="medication-form">
-    <label for="medication-name">Medicine:</label>
-    
+<form id="medication-form">
+  <label for="medication-name">Medicine:</label>
+
+  <div class="meds" id="user-data" data-user-id="{{id}}">
+    <div id="medication-list">
+      <!-- The list of habits will be added here -->
+      {{#each medicine.medicine_input as |medication|}}
+      <input type="checkbox"> {{medication}}</input>
+      <br>
+      {{/each}}
+    </div>
     <input type="text" id="medication-name" name="medication-name" />
     <button type="button" id="add-medication-button">Add Medication</button>
-  </form>
-  <div class="meds" id="user-data" data-user-id="{{id}}">
-  <div id="medication-list">
-    <!-- The list of habits will be added here -->
-    {{#each medicine.medicine_input as |medication|}}
-    <input type="checkbox">  {{medication}}</input>
-    <br>
-    {{/each}}
-  </div>
-</div>
-<div class="notification is-success">
+</form>
+{{!-- <div class="notification is-success">
   Congratulation on taking your medication consistently!
-</div>
+</div> --}}
 
 <script src="./js/meds.js"></script>

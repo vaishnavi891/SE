@@ -12,7 +12,15 @@ document.addEventListener("DOMContentLoaded", async () => {
   //For each day of the user assign a color based on the average of the given answers
   console.log(data);
   data.days.forEach((day) => {
-    console.log(day.date_created.substring(0, 10));
+    let date = new Date(day.date_created);
+    let month = date.getMonth() + 1;
+    if(month < 10){
+      month = `0${month}`
+    }
+    const d = date.getDate();
+    const year = date.getFullYear();
+    console.log(`${year}-${month}-${d}`)
+    const formattedDate = `${year}-${month}-${d}`
     if (day.checklist_complete) {
       let avgScore =
         (day.score.q1_value +
@@ -22,12 +30,12 @@ document.addEventListener("DOMContentLoaded", async () => {
         4;
       if (avgScore < 2.5) {
         redDays.push({
-          start: day.date_created.substring(0, 10),
+          start: formattedDate,
           display: "background",
         });
       } else {
         greenDays.push({
-          start: day.date_created.substring(0, 10),
+          start: formattedDate,
           display: "background",
         });
       }

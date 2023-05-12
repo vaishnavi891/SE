@@ -1,39 +1,54 @@
-const habitForm = document.querySelector('#habit-form');
-const habitList = document.querySelector('#habit-list');
-
-// This array will keep track of the habits
-let habits = [];
-
-habitForm.addEventListener('submit', (event) => {
-  // Prevent the form from submitting
+const habitList = document.querySelector("#habit-list");
+const habitInput = document.querySelector("#habit-name");
+const addMedButton = document.querySelector("#add-habit-button");
+addMedButton.addEventListener("click", async (event) => {
   event.preventDefault();
+  console.log("hi")
+  const habit = habitInput.value;
+  const userId = Number(document.querySelector("#user-data").dataset.userId);
 
-  // Get the habit name from the input field
-  const habitNameInput = document.querySelector('#habit-name');
-  const habitName = habitNameInput.value.trim();
 
-  // Make sure the habit name is not empty
-  if (habitName === '') {
-    return;
+  if (habit) {
+    try {
+      const response = await fetch(`/api/habits/${userId}`)
+      const habitData = await response.json();
+
+      let newMeds = habitData.medicine_input
+
+      if (newMeds) {
+        newMeds.push(habit);
+      }
+      else{
+        newMeds = []
+        newMeds.push(habit)
+      }
+      const updateMeds = {
+        medicine_input: newMeds,
+        user_id: userId
+      }
+
+
+      const response2 = await fetch(`/api/habits/${userId}`, {
+        method: "PUT",
+        body: JSON.stringify(updateMeds),
+        headers: { "Content-Type": "application/json" },
+      });
+      if (response2.ok) {
+        console.log(newMeds)
+        habitList.innerHTML = newMeds
+          .map((habit) => `<input type="checkbox">  ${habit}</input>
+          </br>`)
+          .join("");
+        // Clear the habit input field
+        habitInput.value = "";
+      } else {
+        console.error("Failed to add habit");
+        return;
+      }
+      
+    } catch (err) {
+      console.error(err);
+    }
   }
-
-  // Create a new checkbox for the habit
-  const checkbox = document.createElement('input');
-  checkbox.type = 'checkbox';
-  checkbox.id = `habit-${habits.length}`;
-  checkbox.name = 'habits[]';
-  checkbox.value = habitName;
-  const label = document.createElement('label');
-  label.for = checkbox.id;
-  label.textContent = habitName;
-
-  // Add the checkbox to the list of habits
-  habitList.appendChild(checkbox);
-  habitList.appendChild(label);
-
-  // Add the habit to the array
-  habits.push(habitName);
-
-  // Clear the input field
-  habitNameInput.value = '';
 });
+
