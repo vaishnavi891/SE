@@ -1,7 +1,7 @@
 //Keep track of userId for updating
 const user_id = Number(document.querySelector("#user-data").dataset.userId);
 const titleInput = document.querySelector("#title")
-const textInput = document.querySelector("#title")
+const textInput = document.querySelector("#text")
 const logForm = document.querySelector("#log-form");
 
 console.log(`Title: ${title}, Text: ${text}, user_id: ${user_id}`)
