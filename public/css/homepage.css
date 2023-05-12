@@ -1,6 +1,6 @@
 /* adding a border and making it fit page well */
 .all{
-  /* border: 2px solid rgb(176, 255, 255); */
+  border: 2px solid rgb(176, 255, 255);
   padding: 200px;
 }
 .welcome{
