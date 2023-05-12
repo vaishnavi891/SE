@@ -1,10 +1,10 @@
 <section>
   {{!-- using bulma to create sections, and title defauls --}}
-  <div class="title is-1">
+  <div class="title is-1 id="user-data" data-user-id="{{id}}>
     <h1 class="journal">My Journal</h1>
   </div>
   <div class="textin">
-    <form action="/submit" method="post">
+    <form id="log-form">
     {{!-- connecting to seeds to display on screen --}}
       {{#each logs as |log|}}
       <div class="journal-entry">
@@ -27,3 +27,4 @@
   </div>
   </form>
 </section>
+<script src="./js/journal.js"></script>

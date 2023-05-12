@@ -4,7 +4,7 @@ const { User, Day, Log, Score, Medicine, Wellbeing } = require("../../models");
 
 router.get("/", async (req, res) => {
   try {
-    const userData = await User.findAll();
+    const userData = await User.findAll({include:[Log]});
 
     if (!userData) {
       res.status(404).json({ error: 404, message: "Cannot find any Users" });
