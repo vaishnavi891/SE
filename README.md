@@ -13,6 +13,14 @@
    To use this application correctly, you will need to install Node.js and then run NPM i to install bcrypt, connect-session-sequelize, dotenv, express, express-handlebars, express-session, mysql2, sequelize, and uuid.
   ## Usage
    This application will provide the user with the ability to keep track of their mental health better, and easily access the necessary help they need so they don't feel like they are alone.
+   
+![Alt text](assets/image/Capture.PNG)
+
+![Alt text](assets/image/dash1.PNG)
+
+![Alt text](assets/image/dash2.PNG)
+
+![Alt text](assets/image/about.jpg)
   ## Credits
    This application was created by a group of people from class as a project. We also had assistance from our TAs, instructor, and from Google.
    
