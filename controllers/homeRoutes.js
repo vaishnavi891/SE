@@ -3,78 +3,19 @@ const { User, Day, Log, Score, Medicine, Wellbeing } = require("../models");
 const withAuth = require("../utils/auth");
 
 //Gets all post in db and displays them
-router.get("/", async (req, res) => {
+router.get("/", withAuth, async (req, res) => {
   try {
-    if(req.session.logged_in){
-      res.redirect('/dashboard')
-      return;
-    }
     res.render("homepage", { logged_in: req.session.logged_in });
   } catch (err) {
     res.status(400).json(err);
   }
 });
 
-//dashboard
-router.get("/dashboard", withAuth, async (req, res) => {
-  try {
-
-    //Find most recent date of the user
-    const mostRecentDay = await Day.findAll({
-      limit: 1,
-      where: {
-        user_id: req.session.user_id,
-      },
-      order: [['date_created', 'desc']]
-    });
-
-    //Compare Dates 
-    let getDate1 = new Date(mostRecentDay[0].date_created);
-    let getDate2 = new Date();
-    
-    console.log(getDate1.toDateString() === getDate2.toDateString())
-    //If not the current day create a new Day database entry
-    if (getDate1.toDateString() !== getDate2.toDateString()) {
-      const newDate = await Day.create({
-        checklist_complete : false,
-        user_id : req.session.user_id
-      })
-    }
-
-    const userData = await User.findOne({
-      include: [
-        {
-          model: Day,
-          include: [Score],
-        },
-        Log,
-        Medicine,
-        Wellbeing,
-      ],
-      where: {
-        id: req.session.user_id,
-      },
-      order : [[Day, 'date_created', 'desc']]
-    });
-    //convert the Sequelize model instances to plain JavaScript objects (allows the use of handlebar)
-    const userInfo = userData.get({ plain: true });
-
-    console.log(userInfo);
-
-    res.render("dashboard", {
-      userInfo,
-      logged_in: req.session.logged_in,
-    });
-  } catch (err) {
-    res.status(500).json(err);
-  }
-});
-
 //login
 router.get("/login", async (req, res) => {
-  // If the user is already logged in, redirect the request to another route
+  // If the user is already logged in, redirect the request to homepage
   if (req.session.logged_in) {
-    res.redirect("/dashboard");
+    res.redirect("/");
     return;
   }
   res.render("login");
@@ -106,13 +47,81 @@ router.get("/about", async (req, res) => {
   }
 });
 
+const avatarOptions = require("../utils/avatarOptions");
+
 router.get("/signup", async (req, res) => {
   try {
     console.log(req.session.logged_in)
-    res.render("signup");
+    res.render("signup", { avatarOptions });
   } catch (err) {
     res.status(400).json(err);
   }
 });
 
+// Add dashboard route
+router.get("/dashboard", withAuth, async (req, res) => {
+  try {
+    // Find the logged in user and include related data
+    const userData = await User.findByPk(req.session.user_id, {
+      attributes: { exclude: ["password"] },
+      include: [
+        {
+          model: Day,
+          include: [
+            {
+              model: Score,
+            },
+          ],
+        },
+        {
+          model: Log,
+        },
+        {
+          model: Medicine,
+        },
+        {
+          model: Wellbeing,
+        },
+      ],
+      order: [[{ model: Day }, "date_created", "DESC"]],
+    });
+
+    const user = userData.get({ plain: true });
+
+    // Get today's date string in YYYY-MM-DD format
+    const today = new Date();
+    const yyyy = today.getFullYear();
+    const mm = String(today.getMonth() + 1).padStart(2, "0");
+    const dd = String(today.getDate()).padStart(2, "0");
+    const todayStr = `${yyyy}-${mm}-${dd}`;
+
+    // Check if a Day record exists for today
+    let currentDay = user.days.find(
+      (day) => day.date_created && day.date_created.toISOString().startsWith(todayStr)
+    );
+
+    // If not, create a new Day record for today
+    if (!currentDay) {
+      const newDay = await Day.create({
+        user_id: req.session.user_id,
+        date_created: today,
+        checklist_complete: false,
+      });
+      currentDay = newDay.get({ plain: true });
+      // Add the new day to user's days array
+      user.days.unshift(currentDay);
+    }
+
+    // Pass currentDay as the first day in days array for rendering
+    user.days[0] = currentDay;
+
+    res.render("dashboard", {
+      userInfo: user,
+      logged_in: true,
+    });
+  } catch (err) {
+    console.error("Error in /dashboard route:", err);
+    res.status(500).json(err);
+  }
+});
 module.exports = router;

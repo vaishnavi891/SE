@@ -22,15 +22,9 @@ document.addEventListener("DOMContentLoaded", async () => {
   //For each day of the user assign a color based on the average of the given answers
   console.log(data);
   data.days.forEach((day) => {
-    let date = new Date(day.date_created);
-    let month = date.getMonth() + 1;
-    if (month < 10) {
-      month = `0${month}`;
-    }
-    const d = date.getDate();
-    const year = date.getFullYear();
-    console.log(`${year}-${month}-${d}`);
-    const formattedDate = `${year}-${month}-${d}`;
+    // Use date string directly without Date object to avoid timezone issues
+    const formattedDate = day.date_created.split('T')[0]; // YYYY-MM-DD
+    console.log(formattedDate);
     if (day.checklist_complete) {
       let avgScore =
         (day.score.q1_value +

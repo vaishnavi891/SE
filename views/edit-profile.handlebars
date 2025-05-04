@@ -1,0 +1,123 @@
+<section class="section" style="min-height: 100vh; background: linear-gradient(to right, #fbc2eb, #a6c1ee);">
+  <div class="container">
+    <h1 class="title is-3 has-text-centered">Edit Profile</h1>
+    <form id="edit-profile-form" action="/profile/avatar" method="POST" enctype="multipart/form-data" class="box">
+      <div class="field">
+        <label class="label" for="avatar">Upload Avatar</label>
+        <div class="control">
+          <input class="input" type="file" id="avatar" name="avatar" accept="image/*" required>
+        </div>
+      </div>
+      <div class="field is-grouped is-grouped-centered">
+        <div class="control">
+          <button type="submit" class="button is-link">Upload</button>
+        </div>
+      </div>
+    </form>
+
+    <h2 class="title is-4 has-text-centered" style="margin-top: 2rem;">Or Choose an Avatar</h2>
+    <form id="select-avatar-form" action="/edit-profile/avatar" method="POST" class="box">
+      <div class="avatar-options" style="display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center;">
+        {{#each avatarOptions}}
+        <label style="cursor: pointer;">
+          <input type="radio" name="avatar" value="{{this}}" style="display: none;" {{#ifEquals this ../user.avatar}}checked{{/ifEquals}} />
+          <img src="{{this}}" alt="Avatar option" style="width: 64px; height: 64px; border-radius: 50%; border: 2px solid #ccc;" />
+        </label>
+        {{/each}}
+      </div>
+      <div class="field is-grouped is-grouped-centered" style="margin-top: 1rem;">
+        <div class="control">
+          <button type="submit" class="button is-primary">Save Avatar</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</section>
+
+<script>
+  // Highlight selected avatar
+  document.querySelectorAll('.avatar-options input[type="radio"]').forEach(radio => {
+    radio.addEventListener('change', () => {
+      document.querySelectorAll('.avatar-options img').forEach(img => {
+        img.style.borderColor = '#ccc';
+      });
+      const selected = document.querySelector('.avatar-options input[type="radio"]:checked');
+      if (selected) {
+        selected.nextElementSibling.style.borderColor = '#3273dc';
+      }
+    });
+  });
+
+  // Initialize border color on page load
+  window.addEventListener('DOMContentLoaded', () => {
+    const selected = document.querySelector('.avatar-options input[type="radio"]:checked');
+    if (selected) {
+      selected.nextElementSibling.style.borderColor = '#3273dc';
+    }
+  });
+
+  // Handle avatar upload form submission with fetch
+  const uploadForm = document.getElementById('edit-profile-form');
+  uploadForm.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    const formData = new FormData(uploadForm);
+    try {
+      const response = await fetch(uploadForm.action, {
+        method: 'POST',
+        body: formData,
+      });
+      const result = await response.json();
+      if (response.ok) {
+        updateAvatarImages(result.avatar);
+        alert('Avatar uploaded successfully');
+      } else {
+        alert(result.message || 'Failed to upload avatar');
+      }
+    } catch (error) {
+      alert('Error uploading avatar');
+    }
+  });
+
+  // Handle avatar selection form submission with fetch
+  const selectForm = document.getElementById('select-avatar-form');
+  selectForm.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    const formData = new FormData(selectForm);
+    try {
+      const response = await fetch(selectForm.action, {
+        method: 'POST',
+        body: new URLSearchParams(formData),
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+      });
+      const result = await response.json();
+      if (response.ok) {
+        updateAvatarImages(result.avatar);
+        alert('Avatar updated successfully');
+      } else {
+        alert(result.message || 'Failed to update avatar');
+      }
+    } catch (error) {
+      alert('Error updating avatar');
+    }
+  });
+
+  // Update avatar images in the page and navbar
+  function updateAvatarImages(avatarUrl) {
+    // Update avatar in edit profile page
+    document.querySelectorAll('.avatar-options img').forEach(img => {
+      if (img.src !== avatarUrl) {
+        img.style.borderColor = '#ccc';
+      } else {
+        img.style.borderColor = '#3273dc';
+      }
+    });
+
+    // Update avatar in navbar if present
+    const navbarAvatar = document.querySelector('.navbar-item img[alt="User Avatar"]');
+    if (navbarAvatar) {
+      navbarAvatar.src = avatarUrl;
+    }
+  }
+</script>

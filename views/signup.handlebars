@@ -40,6 +40,17 @@
 
                   </div>
                 </div>
+
+                <h2 class="title is-4 has-text-centered" style="margin-top: 2rem;">Choose Your Avatar</h2>
+                <div class="avatar-options" style="display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; margin-bottom: 1rem;">
+                  {{#each avatarOptions}}
+                  <label style="cursor: pointer;">
+                    <input type="radio" name="avatar" value="{{this}}" style="display: none;" />
+                    <img src="{{this}}" alt="Avatar option" style="width: 64px; height: 64px; border-radius: 50%; border: 2px solid #ccc;" />
+                  </label>
+                  {{/each}}
+                </div>
+
                 <div class="field">
                   <div class="control">
                     <button type="submit" class="button is-primary is-fullwidth login">Sign Up</button>
@@ -49,4 +60,27 @@
 
           <!-- javascript file-->
           <script src="./js/signup.js"></script>
+
+<script>
+  // Highlight selected avatar
+  document.querySelectorAll('.avatar-options input[type="radio"]').forEach(radio => {
+    radio.addEventListener('change', () => {
+      document.querySelectorAll('.avatar-options img').forEach(img => {
+        img.style.borderColor = '#ccc';
+      });
+      const selected = document.querySelector('.avatar-options input[type="radio"]:checked');
+      if (selected) {
+        selected.nextElementSibling.style.borderColor = '#3273dc';
+      }
+    });
+  });
+
+  // Initialize border color on page load
+  window.addEventListener('DOMContentLoaded', () => {
+    const selected = document.querySelector('.avatar-options input[type="radio"]:checked');
+    if (selected) {
+      selected.nextElementSibling.style.borderColor = '#3273dc';
+    }
+  });
+</script>
 </section>

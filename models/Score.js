@@ -11,25 +11,35 @@ Score.init(
       primaryKey: true,
       autoIncrement: true,
     },
+    day_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: {
+        model: "day",
+        key: "id",
+      },
+      onDelete: "CASCADE",
+      onUpdate: "CASCADE",
+    },
     q1_value: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      isUnique: false,
+      unique: false,
     },
     q2_value: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      isUnique: false,
+      unique: false,
     },
     q3_value: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      isUnique: false,
+      unique: false,
     },
     q4_value: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      isUnique: false,
+      unique: false,
     },
   },
   {

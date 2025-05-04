@@ -1,35 +1,317 @@
-<div class="section is-background is-fullheight"
-  style="background-image: url('./images/cloud.jpg'); background-size: cover;"
->
-    {{!-- bulma used to display partials on screen --}}
-    <div class="columns mt-4" id="has-current-day" data-current-day="{{userInfo.days.[0].date_created}}">
-        <div class="column box is-6">
-            {{#with userInfo}}
-            {{>calendar}}
-            {{/with}}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Echo Mind - Wellness Dashboard</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background: url('./images/cloud.jpg') center center / cover no-repeat fixed;
+    }
+
+    .overlay {
+      background-color: rgba(0, 0, 0, 0.6);
+      min-height: 100vh;
+      padding: 2rem;
+    }
+
+    .dashboard-title {
+      color: white;
+      text-align: center;
+      font-size: 2rem;
+      font-weight: 600;
+      margin-bottom: 2rem;
+    }
+
+    .card {
+      border-radius: 15px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      transition: transform 0.2s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .card-content {
+      padding: 1.5rem;
+    }
+
+    .button.is-circle {
+      border-radius: 50%;
+      font-size: 1.5rem;
+      margin: 0 5px;
+    }
+
+    canvas {
+      background: white;
+      border-radius: 10px;
+      padding: 10px;
+    }
+
+    .white-box {
+      background: white;
+      border-radius: 15px;
+      padding: 1.5rem;
+      margin-top: 2rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="overlay">
+    <h1 class="dashboard-title">✨ Echo Mind - Wellness Dashboard</h1>
+
+    <div class="columns is-multiline">
+      <!-- Daily Motivation -->
+      <div class="column is-half">
+        <div class="card">
+          <div class="card-content">
+            <h2 class="title is-5">💡 Daily Motivation</h2>
+            <p>“The only way to do great work is to love what you do.” – Steve Jobs</p>
+            <p class="mt-3">Take breaks, stay hydrated, and prioritize your mental well-being!</p>
+          </div>
         </div>
-        <div class="column p-6 is-6">
-            {{#with userInfo.days.[0]}}
-            {{>checkin}}
-            {{/with}}
+      </div>
+
+      <!-- Mood Tracker -->
+      <div class="column is-half">
+        <div class="card">
+          <div class="card-content">
+            <h2 class="title is-5">🙂 How are you feeling today?</h2>
+            <div class="buttons">
+              <button class="button is-light is-circle" onclick="logMood('😄')">😄</button>
+              <button class="button is-light is-circle" onclick="logMood('🙂')">🙂</button>
+              <button class="button is-light is-circle" onclick="logMood('😐')">😐</button>
+              <button class="button is-light is-circle" onclick="logMood('😔')">😔</button>
+              <button class="button is-light is-circle" onclick="logMood('😢')">😢</button>
+            </div>
+            <p class="mt-2">Today's mood: <strong id="today-mood">Not set</strong></p>
+          </div>
         </div>
+      </div>
+
+      <!-- Daily Inspiration -->
+      <div class="column is-full">
+        <div class="card has-background-info has-text-white">
+          <div class="card-content has-text-centered">
+            <h3 class="title is-5">🌟 Daily Inspiration</h3>
+            <p id="inspiration-quote" class="subtitle is-6">“The best way to predict the future is to create it.” – Peter Drucker</p>
+            <button id="new-quote-btn" class="button is-light mt-2">Show me another quote</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- To-Do List -->
+      <div class="column is-half">
+        <div class="card">
+          <div class="card-content">
+            <h3 class="title is-5">📝 To-Do List</h3>
+            <input id="todo-input" class="input mb-2" type="text" placeholder="Enter a task..." />
+            <button class="button is-info is-fullwidth" onclick="addTask()">Add Task</button>
+            <ul id="todo-list" class="mt-3"></ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mood Progress -->
+      <div class="column is-half">
+        <div class="card">
+          <div class="card-content">
+            <h3 class="title is-5">📈 Mood Progress</h3>
+            <p>Days you've checked in: <strong id="checkin-count">0</strong></p>
+            <canvas id="mood-chart" height="100"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mood Streak -->
+      <div class="column is-half">
+        <div class="card">
+          <div class="card-content">
+            <h3 class="title is-5">🔥 Mood Streak</h3>
+            <p id="mood-streak">You have a streak of 0 days!</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Relaxation Timer -->
+      <div class="column is-half">
+        <div class="card">
+          <div class="card-content">
+            <h3 class="title is-5">🧘 Relaxation Timer</h3>
+            <input type="time" id="timer-input" class="input mb-2" />
+            <button class="button is-success is-fullwidth" onclick="startTimer()">Start Relaxation</button>
+          </div>
+        </div>
+      </div>
     </div>
-    
-    {{!-- Add all partial that use userInfo --}}
-    {{#with userInfo}}
-    <div class="columns  mt-6">
-        <div class="column is-6 box" style="margin: 20px;">
-            {{>meds}}
-        </div>
-        <div class="column is-6 box" style="margin: 20px;">
-            {{>wellbeing}}
-        </div>
+
+    <!-- Affirmation Generator -->
+    <div class="white-box">
+      <h3 class="title is-5">💖 Affirmations</h3>
+      <div id="affirmation-grid" class="columns is-multiline"></div>
+      <button class="button is-primary mt-3" onclick="loadAffirmations()">Refresh Affirmations</button>
     </div>
-    {{!-- {{>journal}} --}}
-    <div class="journal">
-        {{>journal}}
+
+    <!-- Community Posts -->
+    <div class="white-box mt-5">
+      <h3 class="title is-5">🗣️ Community Posts</h3>
+      <div id="post-list"></div>
     </div>
-    {{/with}}
-</div>
-{{!-- attaching corresponding js --}}
-<script src="./js/dashboard.js"></script>
+
+    <!-- Sleep Tracker -->
+    <div class="white-box">
+      <h3 class="title is-5">😴 Sleep Tracker</h3>
+      <input type="date" id="sleep-date" class="input mb-2" />
+      <input type="number" id="sleep-hours" class="input mb-2" placeholder="Hours slept" min="0" max="24"/>
+      <button class="button is-success mb-4" onclick="logSleep()">Log Sleep</button>
+      <canvas id="sleep-chart" height="100"></canvas>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+    // Quotes
+    const quotes = [
+      "“The best way to predict the future is to create it.” – Peter Drucker",
+      "“Believe you can and you're halfway there.” – Roosevelt",
+      "“Happiness is not ready made. It comes from actions.” – Dalai Lama"
+    ];
+    document.getElementById('new-quote-btn').onclick = () => {
+      let quote;
+      do {
+        quote = quotes[Math.floor(Math.random() * quotes.length)];
+      } while (quote === document.getElementById('inspiration-quote').innerText);
+      document.getElementById('inspiration-quote').innerText = quote;
+    };
+
+    // Mood Tracker
+    function logMood(emoji) {
+      const today = new Date().toISOString().split('T')[0];
+      const moodLogs = JSON.parse(localStorage.getItem("moodLogs") || "{}");
+      moodLogs[today] = emoji;
+      localStorage.setItem("moodLogs", JSON.stringify(moodLogs));
+      document.getElementById("today-mood").innerText = emoji;
+      updateChart();
+      updateCheckinCount();
+    }
+
+    function loadTodayMood() {
+      const today = new Date().toISOString().split('T')[0];
+      const moodLogs = JSON.parse(localStorage.getItem("moodLogs") || "{}");
+      document.getElementById("today-mood").innerText = moodLogs[today] || "Not set";
+    }
+
+    // To-Do List
+    function addTask() {
+      const input = document.getElementById("todo-input");
+      const task = input.value.trim();
+      if (task) {
+        const list = document.getElementById("todo-list");
+        const li = document.createElement("li");
+        li.className = "mb-2";
+        li.innerHTML = `<div class="is-flex is-justify-content-space-between">
+                          <span>${task}</span>
+                          <button onclick="this.parentElement.parentElement.remove()" class="button is-small is-danger is-light">x</button>
+                        </div>`;
+        list.appendChild(li);
+        input.value = "";
+      }
+    }
+
+    // Mood Chart
+    let moodChart;
+    function updateChart() {
+      const moodLogs = JSON.parse(localStorage.getItem("moodLogs") || "{}");
+      const labels = Object.keys(moodLogs);
+      const data = labels.map(date => moodLogs[date].charCodeAt(0));
+      const ctx = document.getElementById("mood-chart").getContext("2d");
+      if (moodChart) moodChart.destroy();
+      moodChart = new Chart(ctx, {
+        type: "line",
+        data: {
+          labels,
+          datasets: [{
+            label: "Mood Trend (Emoji Code)",
+            data,
+            borderColor: "#48c774",
+            backgroundColor: "rgba(72,199,116,0.1)",
+            fill: true
+          }]
+        }
+      });
+    }
+
+    function updateCheckinCount() {
+      const moodLogs = JSON.parse(localStorage.getItem("moodLogs") || "{}");
+      document.getElementById("checkin-count").innerText = Object.keys(moodLogs).length;
+    }
+
+    function startTimer() {
+      alert("Relaxation timer started!");
+    }
+
+    // Affirmations
+    const affirmations = [
+      "I am enough.", "I believe in myself.", "I radiate confidence.",
+      "I am resilient and strong.", "I am growing every day.", "My mind is calm.",
+      "I choose happiness.", "I trust myself.", "I attract positivity."
+    ];
+
+    function loadAffirmations() {
+      const grid = document.getElementById("affirmation-grid");
+      grid.innerHTML = "";
+      const shuffled = affirmations.sort(() => 0.5 - Math.random()).slice(0, 6);
+      shuffled.forEach(text => {
+        const col = document.createElement("div");
+        col.className = "column is-one-third";
+        col.innerHTML = `<div class="box has-text-centered">${text}</div>`;
+        grid.appendChild(col);
+      });
+    }
+
+    // Sleep Tracker
+    function logSleep() {
+      const date = document.getElementById("sleep-date").value;
+      const hours = parseFloat(document.getElementById("sleep-hours").value);
+      if (date && hours) {
+        const sleepData = JSON.parse(localStorage.getItem("sleepData") || "{}");
+        sleepData[date] = hours;
+        localStorage.setItem("sleepData", JSON.stringify(sleepData));
+        updateSleepChart();
+      }
+    }
+
+    function updateSleepChart() {
+      const data = JSON.parse(localStorage.getItem("sleepData") || "{}");
+      const labels = Object.keys(data).sort();
+      const hours = labels.map(d => data[d]);
+      const ctx = document.getElementById("sleep-chart").getContext("2d");
+      if (window.sleepChart) window.sleepChart.destroy();
+      window.sleepChart = new Chart(ctx, {
+        type: "bar",
+        data: {
+          labels,
+          datasets: [{
+            label: "Sleep Hours",
+            data: hours,
+            backgroundColor: "#48c774"
+          }]
+        }
+      });
+    }
+
+    // Initial load
+    document.addEventListener("DOMContentLoaded", () => {
+      loadTodayMood();
+      updateChart();
+      updateCheckinCount();
+      updateSleepChart();
+      loadAffirmations();
+    });
+  </script>
+</body>
+</html>

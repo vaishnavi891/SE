@@ -1,0 +1,49 @@
+<section class="section" style="min-height: 100vh; background: linear-gradient(to right, #fbc2eb, #a6c1ee);">
+  <div class="container">
+    <!-- Profile Header -->
+    <div class="box has-text-centered" style="padding: 2rem;">
+      {{#if user.avatar}}
+      <img src="{{user.avatar}}" alt="User Avatar" style="border-radius: 50%; width: 128px; height: 128px; object-fit: cover; margin-bottom: 1rem;" />
+      {{else}}
+      <img src="/images/default-avatar.png" alt="Default Avatar" style="border-radius: 50%; width: 128px; height: 128px; object-fit: cover; margin-bottom: 1rem;" />
+      {{/if}}
+      <h1 class="title is-3" style="margin-top: 1rem;">{{user.name}}</h1>
+
+      <div class="columns is-mobile is-centered" style="margin-top: 1rem;">
+        <div class="column has-text-centered">
+          <strong>{{user.posts.length}}</strong><br>Posts
+        </div>
+      </div>
+    </div>
+
+    <!-- User Posts -->
+    <div class="box">
+      <h2 class="subtitle has-text-weight-semibold">📸 {{user.name}}'s Posts</h2>
+      <div class="columns is-multiline">
+        {{#each user.posts}}
+        <div class="column is-one-third" data-post-id="{{this.id}}">
+          <div class="card">
+            <div class="card-content">
+              <p>{{this.content}}</p>
+              <p class="is-size-7 has-text-grey">{{this.timeAgo}}</p>
+              <button class="delete is-small delete-post-button" aria-label="delete" data-post-id="{{this.id}}" style="float: right;"></button>
+            </div>
+          </div>
+        </div>
+        {{/each}}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .card {
+    height: 100%;
+    transition: transform 0.3s ease-in-out;
+  }
+  .card:hover {
+    transform: scale(1.02);
+  }
+</style>
+
+<script src="/js/profile.js"></script>

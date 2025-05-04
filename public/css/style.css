@@ -26,7 +26,7 @@
     }
 
     #text {
-       font-weight: bold;
+  
        font-family: 'Poppins', sans-serif;
     }
 
@@ -94,8 +94,12 @@
 .t1{
   font-size: 60px;
 }
-
-
+.p1{
+  font-size: 30px;
+  margin-top: 50px;
+  text-align: left;
+  font-weight:bold;
+}
 .date-image1 {
 width: 5%;
 }

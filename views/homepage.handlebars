@@ -1,27 +1,208 @@
-{{!-- using bulma to create sections with images --}}
-<section class="hero is-background is-fullheight"
-  style="background-image: url('../images/calm2.avif'); background-size: cover;">
-  <div class="daily">
+<section class="section" style="background: linear-gradient(to right, #a1c4fd, #c2e9fb); min-height: 100vh;">
+  <div class="container" data-logged-in-user-id="{{user.id}}">
+    <h1 class="title has-text-centered" style="font-size: 3rem; font-weight: 700;">🌿 Welcome to Harmonii</h1>
+    <p class="subtitle has-text-centered" id="quote-text" style="font-size: 1.25rem; margin-top: 1rem;"></p>
 
-    <div class="columns all is-mobile is-centered">
-      <div class="column is-half welcome">
-        <h2 class="title is-2 ">WELCOME</h2><br>
-        <p class="subtitle is-2">Welcome to the place that will help you keep track of your mental health.</p>
-        <div class="loginbox">
+    <!-- Lottie Animation -->
+    <lottie-player 
+  src="https://assets10.lottiefiles.com/packages/lf20_1pxqjqps.json" 
+  background="transparent" 
+  speed="1" 
+  style="width: 280px; height: 280px; margin:auto"; 
+  loop 
+  autoplay>
+</lottie-player>
+
+
+    <div class="buttons is-centered" style="margin-top: 30px;">
+      <button id="btn-write-post" class="button is-primary is-medium">Write a Post</button>
+      <button id="btn-view-posts" class="button is-link is-medium">View Posted Posts</button>
+      <button id="btn-videos" class="button is-info is-medium">Videos</button>
+      {{!-- Removed View Profile button to avoid duplicate with header link --}}
+      {{!-- <button id="btn-profile" class="button is-warning is-medium">View Profile</button> --}}
+
+    </div>
+
+    <hr>
+
+    <!-- Write Post Section -->
+    <div id="write-post" class="box" style="margin-top: 20px; display:none;">
+      <h2 class="subtitle has-text-weight-semibold">📝 Share Your Journey</h2>
+      <form id="post-form">
+        <div class="field">
+          <label class="label" for="post-content">How do you overcome your mental health issues?</label>
           <div class="control">
-            {{!-- creating links to api routes when button is clicked --}}
-            <a href="/login" class="button log is-primary">Log in</a>
-          </div>
-          <div class="control">
-            <a href="/signup" class="button sign is-primary">Sign up</a>
+            <textarea id="post-content" class="textarea" placeholder="Write your post here..." required></textarea>
           </div>
         </div>
+        <div class="control">
+          <button type="submit" class="button is-primary">Post</button>
+        </div>
+      </form>
+    </div>
+
+    <!-- View Posts Section -->
+    <div id="view-posts" class="box" style="margin-top: 20px; display:none;">
+      <h2 class="subtitle has-text-weight-semibold">🌟 Community Posts</h2>
+        <div id="post-list">
+        {{!-- Posts will be dynamically loaded here --}}
       </div>
-      <div class="column is-half ">
-        <figure class="image img">
-          <img src="../images/growth2.avif">
-        </figure>
+    </div>
+
+    <!-- Videos Section -->
+    <div id="videos" class="box" style="margin-top: 20px; display:none;">
+      <h2 class="subtitle has-text-weight-semibold">🎥 Videos</h2>
+
+      <!-- Meditation -->
+      <div class="video-category">
+        <h2><b>Meditation</b></h2>
+        <div class="video-thumbnails">
+          <a href="https://www.youtube.com/watch?v=inpok4MKVLM" target="_blank" class="video-thumb">
+            <img src="https://img.youtube.com/vi/inpok4MKVLM/hqdefault.jpg" alt="Guided Meditation for Relaxation" />
+            <p>Guided Meditation for Relaxation</p>
+          </a>
+          <a href="https://www.youtube.com/watch?v=4pLUleLdwY4" target="_blank" class="video-thumb">
+            <img src="https://img.youtube.com/vi/4pLUleLdwY4/hqdefault.jpg" alt="Mindfulness Meditation for Beginners" />
+            <p>Mindfulness Meditation for Beginners</p>
+          </a>
+          <a href="https://www.youtube.com/watch?v=ZToicYcHIOU" target="_blank" class="video-thumb">
+            <img src="https://img.youtube.com/vi/ZToicYcHIOU/hqdefault.jpg" alt="10-Minute Mindfulness Meditation" />
+            <p>10-Minute Mindfulness Meditation</p>
+          </a>
+          <a href="https://www.youtube.com/watch?v=6p_yaNFSYao" target="_blank" class="video-thumb">
+            <img src="https://img.youtube.com/vi/6p_yaNFSYao/hqdefault.jpg" alt="Meditation for Anxiety" />
+            <p>Meditation for Anxiety</p>
+          </a>  
+        </div>
+      </div>
+
+      <!-- Breathing -->
+      <div class="video-category">
+        <h2><b>Breathing Exercises</b></h2>
+        <div class="video-thumbnails">
+          <a href="https://www.youtube.com/watch?v=odADwWzHR24" target="_blank" class="video-thumb">
+            <img src="https://img.youtube.com/vi/odADwWzHR24/hqdefault.jpg" alt="4-7-8 Breathing Exercise" />
+            <p>4-7-8 Breathing Exercise</p>
+          </a>
+          <a href="https://www.youtube.com/watch?v=1nZEdqcGVzo" target="_blank" class="video-thumb">
+            <img src="https://img.youtube.com/vi/1nZEdqcGVzo/hqdefault.jpg" alt="Breathing for Stress Relief" />
+            <p>Breathing for Stress Relief</p>
+          </a>
+          <a href="https://www.youtube.com/watch?v=YRPh_GaiL8s" target="_blank" class="video-thumb">
+            <img src="https://img.youtube.com/vi/YRPh_GaiL8s/hqdefault.jpg" alt="Calming Breath Exercise" />
+            <p>Calming Breath Exercise</p>
+          </a>
+        </div>
+      </div>
+
+      <!-- Yoga -->
+      <div class="video-category">
+        <h2><b>Yoga</b></h2>
+        <div class="video-thumbnails">
+          <a href="https://www.youtube.com/watch?v=v7AYKMP6rOE" target="_blank" class="video-thumb">
+            <img src="https://img.youtube.com/vi/v7AYKMP6rOE/hqdefault.jpg" alt="Yoga for Beginners" />
+            <p>Yoga for Beginners</p>
+          </a>
+          <a href="https://www.youtube.com/watch?v=4pKly2JojMw" target="_blank" class="video-thumb">
+            <img src="https://img.youtube.com/vi/4pKly2JojMw/hqdefault.jpg" alt="Morning Yoga Routine" />
+            <p>Morning Yoga Routine</p>
+          </a>
+          <a href="https://www.youtube.com/watch?v=VaoV1PrYft4" target="_blank" class="video-thumb">
+            <img src="https://img.youtube.com/vi/VaoV1PrYft4/hqdefault.jpg" alt="Yoga for Stress Relief" />
+            <p>Yoga for Stress Relief</p>
+          </a>
+        </div>
       </div>
     </div>
   </div>
 </section>
+
+<!-- Styling -->
+<style>
+  .video-thumbnails {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+  }
+
+  .video-thumb {
+    width: 250px;
+    text-align: center;
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.3s;
+  }
+
+  .video-thumb:hover {
+    transform: scale(1.05);
+  }
+
+  .video-thumb img {
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  }
+
+  .video-thumb p {
+    margin-top: 8px;
+    font-size: 0.95rem;
+    padding: 10px;
+  }
+
+  .video-category h2 {
+    margin: 30px 10px 10px;
+    font-size: 1.5rem;
+    color: #333;
+  }
+
+  @media (max-width: 768px) {
+    .video-thumb {
+      width: 100%;
+    }
+
+    .video-thumbnails {
+      justify-content: center;
+    }
+  }
+</style>
+
+<!-- Scripts -->
+<script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+<script src="/js/homepage.js"></script>
+<script src="/js/comments.js"></script>
+<script>
+  // Button interactions
+  document.getElementById('btn-write-post').addEventListener('click', () => {
+    document.getElementById('write-post').style.display = 'block';
+    document.getElementById('view-posts').style.display = 'none';
+    document.getElementById('videos').style.display = 'none';
+  });
+
+  document.getElementById('btn-view-posts').addEventListener('click', () => {
+    document.getElementById('write-post').style.display = 'none';
+    document.getElementById('view-posts').style.display = 'block';
+    document.getElementById('videos').style.display = 'none';
+  });
+
+  document.getElementById('btn-videos').addEventListener('click', () => {
+    document.getElementById('write-post').style.display = 'none';
+    document.getElementById('view-posts').style.display = 'none';
+    document.getElementById('videos').style.display = 'block';
+  });
+
+  // Rotating quote
+  const quotes = [
+    "🧠 “Your mental health is a priority, not a luxury.”",
+    "🌈 “Healing is not linear. Be gentle with yourself.”",
+    "🌱 “Small steps every day lead to big changes.”",
+    "💖 “You are enough. Just as you are.”",
+    "🌸 “Progress, not perfection.”"
+  ];
+  const quoteEl = document.getElementById("quote-text");
+  quoteEl.textContent = quotes[Math.floor(Math.random() * quotes.length)];
+  // Removed profile button click handler to prevent /profile route error
+  // document.getElementById('btn-profile').addEventListener('click', () => {
+  // window.location.href = "/profile"; // or `/profile/{{user._id}}` if using dynamic ID
+  // });
+
+</script>

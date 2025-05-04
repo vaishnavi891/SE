@@ -1,77 +1,76 @@
-
-/* #question1, #question2, #question3, #question4{
-  
-}  */
-select {
-  border-radius: 4px;
-  font-size: 1rem;
+/* Dashboard layout styles */
+.section.is-background {
+  min-height: 100vh;
+  padding: 2rem;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
-.submit{
+.columns {
   display: flex;
-  justify-content: center;
-  margin-top:50px;
-}
-/* tracker css */
-.med, .hab{
-  font-size: 30px;
-  color: rgb(4, 55, 90);
-  padding-bottom: 10px;
+  flex-wrap: wrap;
+  margin-left: -0.75rem;
+  margin-right: -0.75rem;
 }
 
-.add{
-  margin-top: 10px;
-}
-/* journal section */
-.journal{
-  display: flex;
-  justify-content: center;
-  margin: 30px;
-  color: rgb(1, 30, 27);
-  
+.column {
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+  flex-grow: 1;
+  flex-basis: 0;
+  max-width: 100%;
 }
 
-.journal2{
-  display: flex;
-  justify-content: center;
-  border-bottom: 5px solid rgb(220, 251, 251);
-  padding-bottom: 15px;
-  margin-bottom: 15px;
-  font-size: 80px;
-  color:black;
-}
-.journal-entry{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  height: 300px;
-}
-.subtitle{
-  padding-top: 20px;
-  font-size: 30px;
-}
-.entry{
-  font-size: 30px;
-}
-.title2, .t2{
-  display: flex;
-  justify-content: center;
-  color:  rgb(4, 55, 90);
-  font-size: 40px;
-}
-.textin{
-  display: flex;
-  justify-content: center;
+.column.is-6 {
+  flex: 0 0 50%;
+  max-width: 50%;
 }
 
-.button2{
-  display: flex;
-  justify-content: center;
- 
+.box {
+  background-color: white;
+  padding: 1.5rem;
+  border-radius: 6px;
+  box-shadow: 0 2px 3px rgba(10, 10, 10, 0.1);
+  margin-bottom: 1.5rem;
 }
 
-@media (max-width: 860px) {
-  .journal-entry{
-    margin-top: 70px;
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .column.is-6 {
+    flex: 0 0 100%;
+    max-width: 100%;
   }
+  .columns {
+    flex-direction: column;
+  }
+}
+
+/* Additional spacing for dashboard partials */
+#has-current-day {
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+}
+
+/* Style for partials container */
+.p-6 {
+  padding: 1.5rem !important;
+}
+
+/* Fix for background image overlay if needed */
+.section.is-background::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.6);
+  z-index: 0;
+}
+
+/* Ensure content is above overlay */
+.section.is-background > * {
+  position: relative;
+  z-index: 1;
 }

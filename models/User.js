@@ -36,6 +36,11 @@ User.init(
         len: [8],
       },
     },
+    avatar: {
+      type: DataTypes.STRING,
+      allowNull: true,
+      defaultValue: null,
+    },
   },
   {
     hooks: {
